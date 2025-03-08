@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix-AI-tions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #fdfdfd;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fdfdfd;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        /* Fixed grid layout for 4x2 grid on larger screens */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .grid .photo-square {
+            height: 200px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #fdfdfd;
+        }
+        
+        /* Grid responsiveness */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Remove any borders from grid items */
+        .grid-item {
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Fix-AI-tions</h1>
+            <p>A collection of interesting obsessions</p>
+        </div>
+        
+        <div class="grid">
+            <a href="pages/murder-mysteries.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/murdermystery.jpeg');"></div>
+                <h3>Murder Mysteries</h3>
+            </a>
+            <a href="pages/minecraft.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/Minecraft.jpg');"></div>
+                <h3>Minecraft</h3>
+            </a>
+            <a href="pages/biographies.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/Biographies.jpg');"></div>
+                <h3>Biographies</h3>
+            </a>
+            <a href="pages/crosswords.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/crosswords.jpeg');"></div>
+                <h3>Crosswords</h3>
+            </a>
+            <a href="pages/barbie.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/barbie.jpeg');"></div>
+                <h3>Barbie</h3>
+            </a>
+            <a href="pages/garages.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/garage.jpeg');"></div>
+                <h3>Garages</h3>
+            </a>
+            <a href="pages/guns.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/guncabinet.jpeg');"></div>
+                <h3>Gun Collection</h3>
+            </a>
+            <a href="pages/gargoyles.html" class="grid-item">
+                <div class="photo-square" style="background-image: url('images/moor.jpeg');"></div>
+                <h3>Gargoyles</h3>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

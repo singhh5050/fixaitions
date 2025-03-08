@@ -1,0 +1,199 @@
+/* Import Pangolin font */
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* White mask to hide content outside border */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: -1;  /* Put the white mask behind everything */
+    pointer-events: none;
+    /* Create a "window" that matches the border shape */
+    mask: path('M 20 40 Q 20 20 40 20 L calc(100% - 40px) 20 Q calc(100% - 20px) 20 calc(100% - 20px) 40 L calc(100% - 20px) calc(100% - 40px) Q calc(100% - 20px) calc(100% - 20px) calc(100% - 40px) calc(100% - 20px) L 40 calc(100% - 20px) Q 20 calc(100% - 20px) 20 calc(100% - 40px) Z');
+    -webkit-mask: path('M 20 40 Q 20 20 40 20 L calc(100% - 40px) 20 Q calc(100% - 20px) 20 calc(100% - 20px) 40 L calc(100% - 20px) calc(100% - 40px) Q calc(100% - 20px) calc(100% - 20px) calc(100% - 40px) calc(100% - 20px) L 40 calc(100% - 20px) Q 20 calc(100% - 20px) 20 calc(100% - 40px) Z');
+}
+
+body {
+    font-family: 'Pangolin', cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fdfdfd;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 30px 60px;
+    position: relative;
+    /* Add padding to account for the border mask */
+    padding: 20px;
+    /* Create a scrollable container that respects the border */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Hand-drawn border that outlines the viewport */
+body::before {
+    content: '';
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid #333;
+    border-radius: 40px;
+    pointer-events: none;
+    z-index: 999;  /* Keep border on very top */
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="4" result="noise" /><feDisplacementMap in="SourceGraphic" in2="noise" scale="4" /></filter></svg>#filter');
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 60px;
+    position: relative;
+}
+
+/* Remove the old container border */
+.container::before {
+    display: none;
+}
+
+/* Grid Layout */
+/* This is overridden by the custom grid in index.html for the home page */
+.grid {
+    display: grid;
+    /* Default grid template for interior pages */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding: 20px 0;
+    background-color: #fdfdfd;
+    margin: 0 auto;
+}
+
+/* Grid Items */
+.grid-item {
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    padding: 10px;
+}
+
+.grid-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.grid-item a:hover {
+    transform: translateY(-5px);
+}
+
+/* Photo Squares */
+.photo-square {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: #fdfdfd;
+    margin-bottom: 12px;
+    transition: border-color 0.2s ease;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.grid-item:hover .photo-square {
+    /* Remove border color change on hover */
+}
+
+/* Specific styling for profile photos to ensure they are square */
+.profile-section .photo-square {
+    width: 200px;
+    height: 200px;
+    aspect-ratio: 1/1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto 20px auto;
+    background-color: #fdfdfd;
+}
+
+/* Specific styling for the large photo */
+.photo-square.large {
+    width: auto;
+    max-width: 90%;
+    height: 70vh;
+    min-height: 500px;
+    max-height: 700px;
+    aspect-ratio: 3/4;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #fdfdfd;
+}
+
+/* Captions */
+.caption {
+    font-size: 18px;  /* Slightly increased for better readability with Pangolin */
+    color: #333;
+    margin-top: 8px;
+    font-family: 'Pangolin', cursive;  /* Explicitly set font for captions */
+}
+
+/* Profile Quote Style */
+.profile-info p[style*="font-style: italic"] {
+    font-size: 15.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .container {
+        padding: 60px 40px;  /* Adjusted padding for smaller screens */
+    }
+    
+    .container::before {
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+} 

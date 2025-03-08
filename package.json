@@ -1,0 +1,16 @@
+{
+  "name": "fixaitions",
+  "version": "1.0.0",
+  "description": "A collection of interesting obsessions",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel deploy --prod"
+  },
+  "dependencies": {
+    "vercel": "^32.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+} 
