@@ -9,6 +9,16 @@
     { "src": "transcripts.json", "use": "@vercel/static" }
   ],
   "routes": [
+    { 
+      "src": "/api/chat/(?<model>[^/]+)",
+      "dest": "/api/chat/[model].js?model=$model",
+      "methods": ["GET", "POST", "OPTIONS"]
+    },
+    { 
+      "src": "/api/test", 
+      "dest": "/api/test.js",
+      "methods": ["GET", "POST", "OPTIONS"]
+    },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]

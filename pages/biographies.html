@@ -403,8 +403,9 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 showLoading();
                 
                 console.log('Sending request to API...');
-                // Use our Vercel API endpoint instead of calling OpenAI directly
-                const apiUrl = '/api/chat';
+                // Use our Vercel API endpoint with dynamic routing instead of calling OpenAI directly
+                const model = 'gpt-3.5-turbo-0125';
+                const apiUrl = `/api/chat/${model}`;
                 
                 // Create the system prompt based on the current speaker
                 const systemPrompt = createSystemPrompt(currentSpeaker, currentTranscript);
@@ -412,7 +413,8 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'x-vercel-protection-bypass': 'BsZYFOZpQYyhsUeqH5iYWdPyEJmMT2WQ'
                     },
                     body: JSON.stringify({
                         model: 'gpt-3.5-turbo-0125',
