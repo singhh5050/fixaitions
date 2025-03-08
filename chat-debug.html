@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Debug Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+        .chat-container {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #DCF8C6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .bot-message {
+            background-color: #f1f0f0;
+        }
+        .error-message {
+            background-color: #ffdddd;
+            color: #d32f2f;
+            border: 1px solid #d32f2f;
+        }
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background-color: white;
+        }
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .chat-input button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #45a049;
+        }
+        .debug-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .debug-panel h3 {
+            margin-top: 0;
+        }
+        .debug-panel pre {
+            background-color: #eaeaea;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .controls {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        .controls button {
+            padding: 8px 15px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .controls button:hover {
+            background-color: #0b7dda;
+        }
+        .endpoint-selector {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat Debug Test</h1>
+    
+    <div class="endpoint-selector">
+        <label for="endpoint">API Endpoint:</label>
+        <select id="endpoint">
+            <option value="/api/chat">Regular (/api/chat)</option>
+            <option value="/api/chat-debug" selected>Debug (/api/chat-debug)</option>
+        </select>
+    </div>
+    
+    <div class="controls">
+        <button onclick="testConnection()">Test Connection</button>
+        <button onclick="clearChat()">Clear Chat</button>
+    </div>
+    
+    <div class="container">
+        <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot-message">
+                    This is a debug chat interface. Send a message to test the API.
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type your message here..." />
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+        
+        <div class="debug-panel">
+            <h3>Debug Information</h3>
+            <pre id="debug-output">No requests made yet.</pre>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const debugOutput = document.getElementById('debug-output');
+        const endpointSelector = document.getElementById('endpoint');
+        
+        // Function to add a message to the chat
+        function addMessage(message, type = 'bot') {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(`${type}-message`);
+            
+            if (typeof message === 'object') {
+                const pre = document.createElement('pre');
+                pre.textContent = JSON.stringify(message, null, 2);
+                messageElement.appendChild(pre);
+            } else {
+                messageElement.textContent = message;
+            }
+            
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Function to update debug output
+        function updateDebugOutput(data) {
+            debugOutput.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        // Function to clear chat
+        function clearChat() {
+            chatMessages.innerHTML = '';
+            addMessage('Chat cleared. Send a message to test the API.');
+            debugOutput.textContent = 'No requests made yet.';
+        }
+        
+        // Function to test connection
+        async function testConnection() {
+            try {
+                addMessage('Testing connection...', 'bot');
+                
+                const endpoint = endpointSelector.value;
+                const response = await fetch(endpoint, {
+                    method: 'OPTIONS'
+                });
+                
+                const status = response.status;
+                const headers = {};
+                
+                for (const [key, value] of response.headers.entries()) {
+                    headers[key] = value;
+                }
+                
+                const debugData = {
+                    endpoint,
+                    status,
+                    headers
+                };
+                
+                updateDebugOutput(debugData);
+                
+                if (status === 200 || status === 204) {
+                    addMessage(`✅ Connection successful (${status})`, 'bot');
+                } else {
+                    addMessage(`❌ Connection failed (${status})`, 'error');
+                }
+            } catch (error) {
+                addMessage(`❌ Error: ${error.message}`, 'error');
+                updateDebugOutput({ error: error.message, stack: error.stack });
+            }
+        }
+        
+        // Function to send a message to the API
+        async function sendMessage(userMessage) {
+            try {
+                addMessage(userMessage, 'user');
+                
+                const endpoint = endpointSelector.value;
+                const startTime = Date.now();
+                
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are a helpful assistant for testing purposes.'
+                            },
+                            {
+                                role: 'user',
+                                content: userMessage
+                            }
+                        ],
+                        model: 'gpt-3.5-turbo-0125',
+                        max_tokens: 300
+                    })
+                });
+                
+                const endTime = Date.now();
+                const responseTime = endTime - startTime;
+                
+                const responseText = await response.text();
+                let responseData;
+                
+                try {
+                    responseData = JSON.parse(responseText);
+                } catch (e) {
+                    responseData = { rawResponse: responseText };
+                }
+                
+                const debugData = {
+                    endpoint,
+                    requestTime: new Date().toISOString(),
+                    responseTime: `${responseTime}ms`,
+                    status: response.status,
+                    responseData
+                };
+                
+                updateDebugOutput(debugData);
+                
+                if (response.ok) {
+                    if (responseData.choices && responseData.choices.length > 0) {
+                        const botResponse = responseData.choices[0].message.content;
+                        addMessage(botResponse, 'bot');
+                    } else {
+                        addMessage('Received a response but no message content was found.', 'error');
+                    }
+                } else {
+                    addMessage(responseData, 'error');
+                }
+            } catch (error) {
+                addMessage(`❌ Error: ${error.message}`, 'error');
+                updateDebugOutput({ error: error.message, stack: error.stack });
+            }
+        }
+        
+        // Event listener for send button
+        sendButton.addEventListener('click', () => {
+            const message = userInput.value.trim();
+            if (message) {
+                userInput.value = '';
+                sendMessage(message);
+            }
+        });
+        
+        // Event listener for Enter key
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = userInput.value.trim();
+                if (message) {
+                    userInput.value = '';
+                    sendMessage(message);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Suite</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .test-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .test-description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Test Suite</h1>
+    
+    <!-- Test 1: Basic Server Connection -->
+    <div class="test-section">
+        <div class="test-title">Test 1: Basic Server Connection</div>
+        <div class="test-description">
+            Tests if the server is reachable and responding to basic requests.
+        </div>
+        <button onclick="runTest1()">Run Test</button>
+        <div id="test1-result" class="result"></div>
+    </div>
+    
+    <!-- Test 2: API Endpoint Existence -->
+    <div class="test-section">
+        <div class="test-title">Test 2: API Endpoint Existence</div>
+        <div class="test-description">
+            Checks if the /api/chat endpoint exists and responds (even with an error).
+        </div>
+        <button onclick="runTest2()">Run Test</button>
+        <div id="test2-result" class="result"></div>
+    </div>
+    
+    <!-- Test 3: API Request Format -->
+    <div class="test-section">
+        <div class="test-title">Test 3: API Request Format</div>
+        <div class="test-description">
+            Tests if the API accepts properly formatted requests.
+        </div>
+        <button onclick="runTest3()">Run Test</button>
+        <div id="test3-result" class="result"></div>
+    </div>
+    
+    <!-- Test 4: Environment Variables -->
+    <div class="test-section">
+        <div class="test-title">Test 4: Environment Variables Test</div>
+        <div class="test-description">
+            Tests if the API can access environment variables (creates a special endpoint for this).
+        </div>
+        <button onclick="runTest4()">Run Test</button>
+        <div id="test4-result" class="result"></div>
+    </div>
+    
+    <!-- Test 5: OpenAI API Connection -->
+    <div class="test-section">
+        <div class="test-title">Test 5: OpenAI API Connection</div>
+        <div class="test-description">
+            Tests if the server can connect to OpenAI API with the provided key.
+        </div>
+        <button onclick="runTest5()">Run Test</button>
+        <div id="test5-result" class="result"></div>
+    </div>
+
+    <script>
+        // Utility function to display results
+        function displayResult(elementId, message, isError = false) {
+            const resultElement = document.getElementById(elementId);
+            resultElement.textContent = message;
+            resultElement.className = isError ? 'result error' : 'result success';
+        }
+
+        // Test 1: Basic Server Connection
+        async function runTest1() {
+            try {
+                displayResult('test1-result', 'Running test...');
+                
+                // Simple fetch to the root of the site
+                const response = await fetch('/');
+                
+                if (response.ok) {
+                    displayResult('test1-result', `✅ Server is responding. Status: ${response.status}`);
+                } else {
+                    displayResult('test1-result', `❌ Server responded with status: ${response.status}`, true);
+                }
+            } catch (error) {
+                displayResult('test1-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        // Test 2: API Endpoint Existence
+        async function runTest2() {
+            try {
+                displayResult('test2-result', 'Running test...');
+                
+                // Send a simple HEAD request to check if the endpoint exists
+                const response = await fetch('/api/chat', { method: 'HEAD' });
+                
+                // Even a 405 Method Not Allowed would indicate the endpoint exists
+                if (response.status !== 404) {
+                    displayResult('test2-result', `✅ API endpoint exists. Status: ${response.status}`);
+                } else {
+                    displayResult('test2-result', `❌ API endpoint not found. Status: 404`, true);
+                }
+            } catch (error) {
+                displayResult('test2-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        // Test 3: API Request Format
+        async function runTest3() {
+            try {
+                displayResult('test3-result', 'Running test...');
+                
+                // Send a minimal valid request to the API
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            {
+                                role: 'user',
+                                content: 'Hello, this is a test message.'
+                            }
+                        ],
+                        model: 'gpt-3.5-turbo-0125'
+                    })
+                });
+                
+                const data = await response.text();
+                
+                // Check if we get a response (even an error response is good at this stage)
+                if (response.status !== 404) {
+                    displayResult('test3-result', `✅ API accepted the request format. Status: ${response.status}\nResponse: ${data}`);
+                } else {
+                    displayResult('test3-result', `❌ API endpoint not found. Status: 404`, true);
+                }
+            } catch (error) {
+                displayResult('test3-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        // Test 4: Environment Variables
+        async function runTest4() {
+            try {
+                displayResult('test4-result', 'Running test...');
+                
+                // This test requires a special endpoint to be created
+                // We'll check if /api/env-test exists and returns environment info
+                const response = await fetch('/api/env-test');
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    displayResult('test4-result', `✅ Environment variables test endpoint responded.\nResponse: ${JSON.stringify(data, null, 2)}`);
+                } else if (response.status === 404) {
+                    displayResult('test4-result', `❓ Environment test endpoint not found. You need to create /api/env-test.js first.`, true);
+                } else {
+                    displayResult('test4-result', `❌ Environment test endpoint responded with status: ${response.status}`, true);
+                }
+            } catch (error) {
+                displayResult('test4-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        // Test 5: OpenAI API Connection
+        async function runTest5() {
+            try {
+                displayResult('test5-result', 'Running test...');
+                
+                // Send a minimal request to test OpenAI connection
+                const response = await fetch('/api/openai-test', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        test: true
+                    })
+                });
+                
+                if (response.status === 404) {
+                    displayResult('test5-result', `❓ OpenAI test endpoint not found. You need to create /api/openai-test.js first.`, true);
+                    return;
+                }
+                
+                const data = await response.text();
+                
+                if (response.ok) {
+                    displayResult('test5-result', `✅ OpenAI API connection successful.\nResponse: ${data}`);
+                } else {
+                    displayResult('test5-result', `❌ OpenAI API connection failed. Status: ${response.status}\nResponse: ${data}`, true);
+                }
+            } catch (error) {
+                displayResult('test5-result', `❌ Error: ${error.message}`, true);
+            }
+        }
+    </script>
+</body>
+</html> 
