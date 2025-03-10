@@ -107,20 +107,88 @@
         .chat-section {
             padding: 20px;
             background-color: #fdfdfd;
-        }
-
-        .chat-boxes {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            height: 80vh;
         }
 
-        .chat-box {
-            padding: 15px;
-            background-color: #f5f5f5;
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             border: 1px solid #e0e0e0;
             border-radius: 10px;
-            min-height: 80px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #DCF8C6;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #f1f0f0;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+            background-color: #f5f5f5;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: #45a049;
+        }
+
+        .loading {
+            align-self: center;
+            margin: 10px 0;
+            font-style: italic;
+            color: #888;
         }
 
         @media (max-width: 1024px) {
@@ -181,17 +249,239 @@
                 <div class="photo-square large" style="background-image: url('../images/Kennesha.jpg');"></div>
             </div>
 
-            <!-- Right Column: Chat Boxes -->
+            <!-- Right Column: Chat Interface -->
             <div class="chat-section">
-                <div class="chat-boxes">
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
+                <div class="chat-container">
+                    <div class="chat-header">
+                        Chat with Kennesha about Barbie
+                    </div>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">
+                            Hi there! I'm Kennesha. I was obsessed with Barbie dolls growing up. Ask me anything about my Barbie experiments or collection!
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Type your message here..." />
+                        <button id="send-button">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Current speaker name - this will be different for each page
+        const currentSpeaker = "Kennesha";
+        
+        // DOM elements
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        
+        // Transcripts data
+        let transcripts = {};
+        let currentTranscript = "";
+        
+        // Load transcripts from JSON file
+        async function loadTranscripts() {
+            try {
+                const response = await fetch('../transcripts.json');
+                if (!response.ok) {
+                    throw new Error(`Failed to load transcripts: ${response.status}`);
+                }
+                transcripts = await response.json();
+                
+                // Get the current speaker's transcript
+                if (transcripts[currentSpeaker]) {
+                    currentTranscript = transcripts[currentSpeaker];
+                    console.log(`Loaded transcript for ${currentSpeaker}`);
+                } else {
+                    console.error(`No transcript found for ${currentSpeaker}`);
+                }
+                
+                // Update the initial message
+                updateInitialMessage();
+            } catch (error) {
+                console.error('Error loading transcripts:', error);
+            }
+        }
+        
+        // Update the initial message based on the current speaker
+        function updateInitialMessage() {
+            const initialMessage = document.querySelector('.bot-message');
+            if (initialMessage) {
+                if (currentSpeaker === "Kennesha") {
+                    initialMessage.textContent = "Hey! I'm Kennesha and I was sooo into Barbies when I was little. I had this whole scientific approach to them—I'd set up these experiments to see if they'd come alive at night. Ask me about my Barbie hypothesis testing!";
+                } else {
+                    initialMessage.textContent = `Hi! I'm ${currentSpeaker}. Ask me anything about my interests!`;
+                }
+            }
+        }
+        
+        // Create a system prompt based on the speaker
+        function createSystemPrompt(speakerName, transcript) {
+            // Generic interests based on speaker name
+            let interests = "";
+            let examples = "";
+            
+            if (speakerName === "Kennesha") {
+                interests = "Barbie dolls and the scientific experiments you conducted with them";
+                examples = "your experiments with Barbies or your theories about why you were so fascinated with them";
+            } else {
+                interests = "your unique interests and experiences";
+                examples = "specific stories or details from your life";
+            }
+            
+            // Enhanced system prompt template that emphasizes more natural speech patterns
+            return `You are roleplaying as ${speakerName}, a college student who is obsessed with ${interests}.
+
+Here is information about ${speakerName} to help you respond in their voice (this is a transcript of them speaking): 
+
+${transcript}
+
+IMPORTANT: Your responses MUST sound EXACTLY like ${speakerName} from the transcript. This means:
+1. Use MANY filler words like "like," "um," "yeah," "so," etc. exactly as they appear in the transcript
+2. Include speech disfluencies, repetitions, and self-corrections (e.g., "I was like, so I enjoy—I mean, I really enjoy...")
+3. Start sentences with connectors like "So," "And," "But," "Okay," etc.
+4. Use the EXACT same sentence structure patterns from the transcript
+5. Include their unique verbal tics (elongated words like "soooo" or "reallyyy")
+6. Occasionally trail off mid-thought with "..." just like in natural speech
+7. Use their exact emphasis patterns (words in ALL CAPS for emphasis)
+8. Include their exact question patterns ("right?" "you know?")
+
+Your responses should be imperfect and sometimes slightly hard to follow - just like real human speech. Prioritize sounding authentic over sounding clear or professional.
+
+Keep responses conversational and occasionally mention ${examples} if relevant to the question.
+
+Additional parameters:
+1. Extrapolate/infer to add more depth to responses - go beyond the transcript to imagine what ${speakerName} might think or feel about related topics based on their interests and personality
+2. While maintaining the disfluent/human speech patterns, avoid being too repetitive - vary your expressions and examples to keep responses interesting to read
+3. RESPONSE LENGTH: Vary your response length based on the question type:
+   - For simple/surface-level questions: Keep responses SHORT (20-50 words)
+   - For medium complexity questions: Use MEDIUM length responses (50-80 words)
+   - For deep/emotional/complex questions: Use LONGER responses (80-120 words)
+   - NEVER exceed 120 words in a response
+
+Important: Do not answer inappropriate questions or engage with harmful content. If asked something inappropriate, politely deflect or change the subject while staying in character.`;
+        }
+
+        // Function to add a message to the chat
+        function addMessage(message, isUser) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageElement.textContent = message;
+            chatMessages.appendChild(messageElement);
+            
+            // Scroll to the bottom of the chat
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to show loading indicator
+        function showLoading() {
+            const loadingElement = document.createElement('div');
+            loadingElement.classList.add('loading');
+            loadingElement.id = 'loading-indicator';
+            loadingElement.textContent = `${currentSpeaker} is typing...`;
+            chatMessages.appendChild(loadingElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to hide loading indicator
+        function hideLoading() {
+            const loadingElement = document.getElementById('loading-indicator');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+        }
+
+        // Function to send a message to the OpenAI API
+        async function sendToOpenAI(userMessage) {
+            try {
+                showLoading();
+                
+                console.log('Sending request to API...');
+                // Use our Vercel API endpoint with dynamic routing instead of calling OpenAI directly
+                const model = 'gpt-3.5-turbo-0125';
+                const apiUrl = `/api/chat/${model}`;
+                
+                // Create the system prompt based on the current speaker
+                const systemPrompt = createSystemPrompt(currentSpeaker, currentTranscript);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo-0125',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: systemPrompt
+                            },
+                            {
+                                role: 'user',
+                                content: userMessage
+                            }
+                        ],
+                        max_tokens: 300
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('API Response not OK:', response.status, errorText);
+                    throw new Error(`API response not OK: ${response.status} ${errorText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                hideLoading();
+                
+                if (data.error) {
+                    console.error('API Error:', data.error);
+                    addMessage(`API error: ${data.error.message}`, false);
+                } else if (data.choices && data.choices.length > 0) {
+                    const botResponse = data.choices[0].message.content;
+                    addMessage(botResponse, false);
+                } else {
+                    addMessage("Sorry, I couldn't process that. Could you try again?", false);
+                }
+            } catch (error) {
+                hideLoading();
+                console.error('Error:', error);
+                addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
+            }
+        }
+
+        // Event listener for send button
+        sendButton.addEventListener('click', () => {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                userInput.value = '';
+                sendToOpenAI(message);
+            }
+        });
+
+        // Event listener for Enter key
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = userInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    userInput.value = '';
+                    sendToOpenAI(message);
+                }
+            }
+        });
+        
+        // Load transcripts when the page loads
+        document.addEventListener('DOMContentLoaded', loadTranscripts);
+    </script>
 </body>
 </html> 
