@@ -456,7 +456,7 @@ body::before {
 .transcripts-link {
     position: absolute;
     right: 5%;
-    top: 65%;
+    top: 85%;
     transform: translateY(-50%);
     font-size: 22px;
     color: #666;
@@ -472,7 +472,7 @@ body::before {
 .mission-link {
     position: absolute;
     left: 5%;
-    top: 65%;
+    top: 85%;
     transform: translateY(-50%);
     font-size: 22px;
     color: #666;
