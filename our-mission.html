@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
     <style>
         body {
             background-color: #fdfdfd;
@@ -97,6 +98,7 @@
             color: #666;
         }
         
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .mission-image {
                 max-width: 100%;
@@ -110,24 +112,26 @@
                 padding: 15px;
             }
             
-            .back-link {
-                position: static;
-                margin: 10px 0;
-                display: block;
-            }
-            
-            .header {
-                margin-top: 20px;
-            }
-            
             .header h1 {
                 font-size: 36px;
+            }
+            
+            .back-link {
+                position: relative;
+                left: 0;
+                top: 0;
+                display: block;
+                margin: 10px 0 30px;
             }
         }
         
         @media (max-width: 480px) {
             .container {
                 padding: 10px;
+            }
+            
+            .header {
+                margin-bottom: 20px;
             }
             
             .header h1 {
@@ -140,6 +144,7 @@
             
             .hallucination-image {
                 width: 80%;
+                max-width: 200px;
             }
             
             .image-caption, .small-image-caption {
@@ -197,6 +202,8 @@
                 <p class="image-caption">We also prompt-engineered our little hearts out, making iteration after iteration to our code, ensuring the AI would respond the right way to user questions.</p>
                 <p>We also wanted to ensure we were giving the user the opportunity to experience the site on their own, and generate their own personal opinions about our project. Again, we wanted to only inspire questions about AI, not assert our own notions. We had to find the perfect balance between instruction and silence--- where to leave things blank, and where to command action.</p>
                 <p>Ultimately, we landed on the most hands off approach possible. This project is not about us handing you our dissertation on the relationship between humanity and artificial intelligence. What this project means... is for you to find out.</p>
+                <p>Sincerely,<p></p>
+                <p>Harsh, Linden, and Sophia</p>
             </div>
         </div>
     </div>

@@ -257,6 +257,13 @@ body::before {
 @media (max-width: 1024px) {
     .grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .page-container, .container {
+        padding: 30px;
+    }
+    
+    .three-column-layout {
         gap: 20px;
     }
 }
@@ -271,30 +278,68 @@ body::before {
     }
     
     .container::before {
-        /* Adjust container border for smaller screens */
-        top: 10px;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
     }
     
-    /* Adjust content area padding for smaller screens */
-    .content-area {
-        padding: 15px;
+    /* Adjust three-column layout to two columns */
+    .three-column-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
     }
     
-    /* Reduce header margin on smaller screens */
+    /* Profile section spans full width in first row */
+    .profile-section {
+        grid-column: 1 / -1;
+        padding: 15px 0;
+    }
+    
+    /* Main content and chat section in second row */
+    .main-content {
+        grid-column: 1 / -1;
+    }
+    
+    .chat-section {
+        grid-column: 1 / -1;
+    }
+    
+    /* Adjust header and navigation */
+    .mission-link, .transcripts-link {
+        position: static;
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+        transform: none;
+    }
+    
     .header {
+        padding-top: 10px;
         margin-bottom: 20px;
     }
     
-    /* Adjust font sizes for better readability on small screens */
     .header h1 {
         font-size: 36px;
     }
     
-    .header p {
-        font-size: 16px;
+    /* Responsive adjustments for the hand-drawn border */
+    body::before {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 30px;
+    }
+    
+    /* Responsive adjustments for the content area */
+    .content-area {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        padding: 15px;
+        border-radius: 30px;
     }
 }
 
@@ -303,30 +348,80 @@ body::before {
         grid-template-columns: 1fr;
     }
     
-    /* Further reduce padding and margins for very small screens */
-    .container {
+    /* Further simplify layouts */
+    .page-container, .container {
         padding: 10px;
     }
     
-    .content-area {
-        padding: 10px;
-    }
-    
-    /* Adjust font sizes for very small screens */
+    /* Adjust spacing and font sizes */
     .header h1 {
         font-size: 28px;
+    }
+    
+    .header p {
+        font-size: 16px;
+    }
+    
+    .back-link {
+        font-size: 16px;
+        left: 10px;
+        top: 10px;
+    }
+    
+    /* Ensure chat section is usable on small screens */
+    .chat-container {
+        height: 70vh;
+    }
+    
+    .chat-messages {
+        max-height: 60vh;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+    
+    /* Ensure images are properly sized */
+    .photo-square {
+        height: 150px;
+    }
+    
+    /* Ensure images are properly sized */
+    body::before {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border-width: 1.5px;
+        border-radius: 20px;
+    }
+    
+    /* Responsive adjustments for the content area */
+    .content-area {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 10px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Extra small devices */
+    .header h1 {
+        font-size: 24px;
     }
     
     .grid-item h3 {
         font-size: 16px;
     }
     
-    /* Adjust position of mission and transcripts links on small screens */
-    .mission-link, .transcripts-link {
-        position: static;
-        display: block;
-        margin: 10px auto;
-        text-align: center;
-        transform: none;
+    .chat-input input {
+        padding: 8px;
+    }
+    
+    .chat-input button {
+        padding: 8px 12px;
     }
 } 
