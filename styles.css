@@ -8,6 +8,26 @@
     box-sizing: border-box;
 }
 
+/* Hide scrollbars but maintain scroll functionality */
+body::-webkit-scrollbar,
+.content-area::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar,
+.page-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+/* For Firefox */
+body, .content-area, .chat-messages, .page-container {
+    scrollbar-width: none;
+}
+
+/* For IE and Edge */
+body, .content-area, .chat-messages, .page-container {
+    -ms-overflow-style: none;
+}
+
 /* Main content container with clipping */
 .page-container, .container {
     position: relative;

@@ -456,8 +456,8 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 console.log('Response data:', data);
                 
                 // Add a delay before hiding the loading indicator (5-8 seconds)
-                const minDelay = 5000; // 5 seconds
-                const maxDelay = 8000; // 8 seconds
+                const minDelay = 3000; // 3 seconds
+                const maxDelay = 5000; // 5 seconds
                 const randomDelay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
                 
                 setTimeout(() => {
@@ -480,7 +480,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                     hideLoading();
                     console.error('Error:', error);
                     addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
-                }, 5000);
+                }, 3000);
             }
         }
 
