@@ -429,16 +429,13 @@ body::before {
 /* Header and navigation styling */
 .header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     position: relative;
-    padding: 10px 0;
 }
 
 .header h1 {
     font-size: 48px;
-    margin-bottom: 8px;
-    padding: 10px 0;
-    margin-top: 8px;
+    margin-bottom: 10px;
 }
 
 .header p {
@@ -446,21 +443,13 @@ body::before {
     color: #666;
 }
 
-/* Specific styling for the subtitle */
-.subtitle {
-    margin-bottom: 25px;
-    display: block;
-    position: relative;
-    z-index: 1; /* Ensure it's above the nav container */
-}
-
 /* Navigation container for larger screens */
 .nav-container {
     position: absolute;
-    top: 75%;
+    top: 50%;
     transform: translateY(-50%);
     width: 100%;
-    pointer-events: none;
+    pointer-events: none; /* Allow clicks to pass through container */
 }
 
 .transcripts-link {
@@ -472,14 +461,11 @@ body::before {
     color: #666;
     text-decoration: none;
     transition: color 0.2s ease;
-    pointer-events: auto;
-    padding: 10px 15px;
-    border-radius: 5px;
+    pointer-events: auto; /* Re-enable clicks on the link */
 }
 
 .transcripts-link:hover {
     color: #333;
-    background-color: rgba(0,0,0,0.05);
 }
 
 .mission-link {
@@ -491,18 +477,9 @@ body::before {
     color: #666;
     text-decoration: none;
     transition: color 0.2s ease;
-    pointer-events: auto;
-    padding: 10px 15px;
-    border-radius: 5px;
+    pointer-events: auto; /* Re-enable clicks on the link */
 }
 
 .mission-link:hover {
     color: #333;
-    background-color: rgba(0,0,0,0.05);
-}
-
-/* Style for all nav links */
-.nav-links {
-    padding: 10px 15px;
-    transition: all 0.2s ease;
 } 

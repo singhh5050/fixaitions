@@ -26,10 +26,6 @@
     }
     
     /* Begin adjusting nav links positioning for medium screens */
-    .nav-container {
-        top: 85%; /* Increase vertical distance from title */
-    }
-    
     .mission-link, .transcripts-link, .nav-links {
         left: 2%;
         right: 2%;
@@ -70,25 +66,9 @@
         margin-bottom: 20px;
     }
     
-    /* Force vertical stacking in the header */
-    .header {
-        padding: 8px 0 15px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
-    
     .header h1 {
         font-size: 32px;
-        margin-bottom: 15px;
-        padding: 8px 0;
-    }
-    
-    /* Ensure subtitle has enough bottom margin */
-    .header p {
-        margin-bottom: 40px !important; /* Add important to override inline styles */
-        width: 100%;
+        margin-bottom: 20px;
     }
     
     .profile-info h2 {
@@ -99,53 +79,37 @@
         font-size: 16px;
     }
     
-    /* Completely reposition navigation container */
-    .nav-container {
-        position: relative;
-        top: auto;
+    /* Reposition mission and transcripts links below the title */
+    .mission-link, .transcripts-link, .nav-links {
+        position: static;
+        display: block;
+        text-align: center;
+        margin: 10px auto;
         transform: none;
+    }
+    
+    /* Create a layout for the links below the title */
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    
+    /* Style the navigation links to be horizontally centered */
+    .header .nav-links {
+        margin: 5px 0;
+        padding: 5px 10px;
+    }
+    
+    /* Create a navigation container for the links */
+    .header .nav-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        width: 100%;
-        margin-top: 10px;
         gap: 20px;
-    }
-    
-    /* Reposition mission and transcripts links */
-    .mission-link, .transcripts-link, .nav-links {
-        position: static;
-        display: inline-block;
-        text-align: center;
-        margin: 8px 5px;
-        transform: none;
-        padding: 12px 18px;
-    }
-    
-    /* Style the navigation links */
-    .header .nav-links {
-        margin: 5px;
-        padding: 10px 20px;
-        border-radius: 5px;
-    }
-}
-
-/* Smaller screens - adjust further */
-@media (max-width: 576px) {
-    /* Add more space between subtitle and navigation */
-    .header p {
-        margin-bottom: 60px !important;
-    }
-    
-    /* Make navigation container stack vertically if needed */
-    .nav-container {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .mission-link, .transcripts-link, .nav-links {
+        margin-top: 10px;
         width: 100%;
-        max-width: 200px;
     }
 }
 
@@ -163,20 +127,11 @@
         font-size: 28px;
     }
     
-    /* Ensure the links have enough space */
+    /* Ensure the links have enough space and are easy to tap */
     .header .nav-links {
         font-size: 18px;
-        padding: 12px 24px;
-        margin: 8px 0;
-        background-color: rgba(0,0,0,0.02);
-        display: block;
-        width: 100%;
-    }
-    
-    /* Further increase space between subtitle and navigation */
-    .header p {
-        margin-bottom: 70px !important;
-        font-size: 18px;
+        padding: 8px 15px;
+        margin: 10px 0;
     }
     
     .chat-container {
