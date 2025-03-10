@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 67.5vh; /* Reduced by 25% from 90vh to 67.5vh */
+            height: 77.6vh; /* Increased by 15% from 67.5vh */
         }
 
         .chat-container {
@@ -195,15 +195,20 @@
             background-color: #fdfdfd;
             z-index: 10;
             text-align: center;
-            font-size: 2em;
-            color: #e25e45; /* Red-orange color similar to image */
+            font-size: 1.7em; /* Reduced by 15% from 2em */
+            color: #000000; /* Changed from #e25e45 to black */
             opacity: 1;
             transition: opacity 0.5s ease-out;
         }
 
         .initial-message p {
-            margin: 10px 0;
+            margin: 5px 0; /* Reduced by 50% from 10px 0 */
             padding: 0 20px;
+        }
+
+        .initial-message .subtitle {
+            font-size: 0.5em;
+            margin-top: 9px; /* Reduced by 70% from 30px */
         }
 
         .initial-message.hidden {
@@ -261,12 +266,11 @@
             <!-- Right Column: Chat Interface -->
             <div class="chat-section">
                 <div class="chat-container">
-                    <!-- Removed the header div completely -->
                     <!-- Added initial centered message -->
                     <div class="initial-message" id="initial-message">
                         <p>what does brady</p>
                         <p>have to say?</p>
-                        <p style="font-size: 0.5em; margin-top: 30px;">chat and find out!</p>
+                        <p class="subtitle">chat and find out!</p>
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <!-- Removed initial bot message -->
