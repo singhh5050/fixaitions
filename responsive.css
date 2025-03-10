@@ -30,6 +30,20 @@
         left: 2%;
         right: 2%;
     }
+    
+    .header {
+        min-height: 120px;
+        padding-top: 15px;
+    }
+    
+    .header .title-container {
+        margin-top: 15px;
+    }
+    
+    .mission-link,
+    .transcripts-link {
+        margin-top: 8px;
+    }
 }
 
 /* Small screens (mobile) */
@@ -89,10 +103,18 @@
         grid-template-columns: 1fr auto 1fr;
         gap: 10px;
         margin-bottom: 20px;
+        min-height: 100px;
+        padding-top: 12px;
     }
     
-    .mission-link, .transcripts-link {
+    .header .title-container {
+        margin-top: 12px;
+    }
+    
+    .mission-link,
+    .transcripts-link {
         font-size: 18px;
+        margin-top: 6px;
     }
     
     .mission-link {
@@ -224,5 +246,20 @@
     
     .back-link {
         font-size: 16px;
+    }
+    
+    /* Adjust title and keep it centered */
+    .header {
+        min-height: 90px;
+        padding-top: 10px;
+    }
+    
+    .header .title-container {
+        margin-top: 10px;
+    }
+    
+    .mission-link,
+    .transcripts-link {
+        margin-top: 5px;
     }
 } 

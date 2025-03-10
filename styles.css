@@ -431,17 +431,19 @@ body::before {
 .header {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+    align-items: start;
     margin-bottom: 30px;
     width: 100%;
     gap: 20px;
-    min-height: 100px; /* Ensure there's enough vertical space */
+    min-height: 140px;
+    padding-top: 20px;
 }
 
 .header .title-container {
     grid-column: 2;
     text-align: center;
-    min-width: 200px; /* Ensure title has enough space */
+    min-width: 200px;
+    margin-top: 20px;
 }
 
 .header h1 {
@@ -465,7 +467,8 @@ body::before {
     transition: color 0.2s ease;
     justify-self: start;
     padding-left: 20px;
-    min-width: 120px; /* Ensure link has enough space */
+    min-width: 120px;
+    margin-top: 10px;
 }
 
 .mission-link:hover {
@@ -481,7 +484,8 @@ body::before {
     transition: color 0.2s ease;
     justify-self: end;
     padding-right: 20px;
-    min-width: 120px; /* Ensure link has enough space */
+    min-width: 120px;
+    margin-top: 10px;
 }
 
 .transcripts-link:hover {
