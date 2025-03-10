@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 80vh;
+            height: 85vh; /* Increased height */
         }
 
         .chat-container {
@@ -170,15 +170,15 @@
 
         .chat-input button {
             padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
         }
 
         .chat-input button:hover {
-            background-color: #45a049;
+            background-color: #e0e0e0;
         }
 
         .loading {
@@ -239,15 +239,15 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        chat with aarush about crosswords
+                        ask aarush anything!
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <div class="message bot-message">
-                            hi there! i'm aarush. i'm obsessed with crossword puzzles. ask me anything!
+                            oh, hey! i'm aarush. i used to be, like, really hyper-fixated on crossword puzzles. i would do them literally every single morning, and i would get, like, so mad if i didn't beat my time. especially the rebus puzzles on thursdays—they're so cool! ask me about them!
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="type your message here..." />
+                        <input type="text" id="user-input" placeholder="" />
                         <button id="send-button">send</button>
                     </div>
                 </div>

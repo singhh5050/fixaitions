@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 80vh;
+            height: 85vh; /* Increased height */
         }
 
         .chat-container {
@@ -170,15 +170,15 @@
 
         .chat-input button {
             padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
         }
 
         .chat-input button:hover {
-            background-color: #45a049;
+            background-color: #e0e0e0;
         }
 
         .loading {
@@ -239,15 +239,15 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        chat with nishka about murder mysteries
+                        ask nishka anything!
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <div class="message bot-message">
-                            hi there! i'm nishka. i'm obsessed with murder mysteries and detective novels. ask me anything about agatha christie, sherlock holmes, or my favorite mysteries!
+                            oh, okay, so like, hi! i'm nishka and i got super, super obsessed with murder mystery novels throughout high school. started with sherlock holmes—oh my gosh, a study in scarlet—and then i got into agatha christie. her books are so good, yeah, literally. ask me about my spreadsheet with all her novels or whatever you want to know!
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="type your message here..." />
+                        <input type="text" id="user-input" placeholder="" />
                         <button id="send-button">send</button>
                     </div>
                 </div>

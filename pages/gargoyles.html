@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 80vh;
+            height: 85vh; /* Increased height */
         }
 
         .chat-container {
@@ -170,15 +170,15 @@
 
         .chat-input button {
             padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
         }
 
         .chat-input button:hover {
-            background-color: #45a049;
+            background-color: #e0e0e0;
         }
 
         .loading {
@@ -234,15 +234,15 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        chat with georgina about the moor
+                        ask georgina anything!
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <div class="message bot-message">
-                            hi there! i'm georgina. i'm absolutely fascinated by dartmoor. ask me anything about my connection to the moor!
+                            hello! i'm georgina. i've always been drawn to books about the english moors. i was a bookish child and would read classics aloud in a british accent. i also developed a fascination with stone masonry and gargoyles. what would you like to know?
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="type your message here..." />
+                        <input type="text" id="user-input" placeholder="" />
                         <button id="send-button">send</button>
                     </div>
                 </div>

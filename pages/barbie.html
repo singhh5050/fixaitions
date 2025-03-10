@@ -109,7 +109,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 80vh;
+            height: 85vh; /* Increased height */
         }
 
         .chat-container {
@@ -173,15 +173,15 @@
 
         .chat-input button {
             padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
         }
 
         .chat-input button:hover {
-            background-color: #45a049;
+            background-color: #e0e0e0;
         }
 
         .loading {
@@ -237,15 +237,15 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        chat with kennesha about barbie
+                        ask kennesha anything!
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <div class="message bot-message">
-                            hi there! i'm kennesha and i've been collecting barbies since i was 5 years old. i now have over 300 dolls in my collection! ask me anything about my barbie obsession!
+                            hi! i'm kennesha. i've been collecting barbies since i was 5, and now i have over 300 of them! after my mom passed when i was 14, the smell of new barbie dolls reminded me of her. i've spent around $10,000 on my collection. what would you like to know?
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="type your message here..." />
+                        <input type="text" id="user-input" placeholder="" />
                         <button id="send-button">send</button>
                     </div>
                 </div>
