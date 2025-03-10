@@ -410,7 +410,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 const systemPrompt = createSystemPrompt(currentSpeaker, currentTranscript);
                 
                 const response = await fetch(apiUrl, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
