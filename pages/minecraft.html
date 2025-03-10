@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 67.5vh; /* Reduced by 25% from 90vh to 67.5vh */
+            height: 72vh; /* Reduced by 1/5 from 90vh to 72vh */
         }
 
         .chat-container {
@@ -116,7 +116,6 @@
             border: 1px solid #e0e0e0;
             border-radius: 10px;
             overflow: hidden;
-            position: relative; /* Added for absolute positioning of initial message */
         }
 
         .chat-messages {
@@ -181,36 +180,6 @@
             color: #888;
         }
 
-        /* Add new style for the initial centered message */
-        .initial-message {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #fdfdfd;
-            z-index: 10;
-            text-align: center;
-            font-size: 2em;
-            color: #e25e45; /* Red-orange color similar to image */
-            opacity: 1;
-            transition: opacity 0.5s ease-out;
-        }
-
-        .initial-message p {
-            margin: 10px 0;
-            padding: 0 20px;
-        }
-
-        .initial-message.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
         @media (max-width: 1024px) {
             .three-column-layout {
                 grid-template-columns: 1fr 1fr;
@@ -261,13 +230,6 @@
             <!-- Right Column: Chat Interface -->
             <div class="chat-section">
                 <div class="chat-container">
-                    <!-- Removed the header div completely -->
-                    <!-- Added initial centered message -->
-                    <div class="initial-message" id="initial-message">
-                        <p>what does maanya</p>
-                        <p>have to say?</p>
-                        <p style="font-size: 0.5em; margin-top: 30px;">chat and find out!</p>
-                    </div>
                     <div class="chat-messages" id="chat-messages">
                         <!-- Removed initial bot message -->
                     </div>
@@ -390,7 +352,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Function to show loading indicator with extended delay
+        // Function to show loading indicator
         function showLoading() {
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading');
@@ -411,12 +373,6 @@ Important: Do not answer inappropriate questions or engage with harmful content.
         // Function to send a message to the OpenAI API
         async function sendToOpenAI(userMessage) {
             try {
-                // Hide the initial message if it's the first message
-                const initialMessage = document.getElementById('initial-message');
-                if (initialMessage && !initialMessage.classList.contains('hidden')) {
-                    initialMessage.classList.add('hidden');
-                }
-                
                 showLoading();
                 
                 console.log('Sending request to API...');
@@ -426,10 +382,6 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 
                 // Create the system prompt based on the current speaker
                 const systemPrompt = createSystemPrompt(currentSpeaker, currentTranscript);
-                
-                // Introduce artificial delay for typing indicator (5-8 seconds)
-                const delayTime = Math.floor(Math.random() * 3000) + 5000; // 5-8 seconds
-                await new Promise(resolve => setTimeout(resolve, delayTime));
                 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -463,21 +415,32 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 const data = await response.json();
                 console.log('Response data:', data);
                 
-                hideLoading();
+                // Add a delay before hiding the loading indicator (5-8 seconds)
+                const minDelay = 5000; // 5 seconds
+                const maxDelay = 8000; // 8 seconds
+                const randomDelay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
                 
-                if (data.error) {
-                    console.error('API Error:', data.error);
-                    addMessage(`API error: ${data.error.message}`, false);
-                } else if (data.choices && data.choices.length > 0) {
-                    const botResponse = data.choices[0].message.content;
-                    addMessage(botResponse, false);
-                } else {
-                    addMessage("Sorry, I couldn't process that. Could you try again?", false);
-                }
+                setTimeout(() => {
+                    hideLoading();
+                    
+                    if (data.error) {
+                        console.error('API Error:', data.error);
+                        addMessage(`API error: ${data.error.message}`, false);
+                    } else if (data.choices && data.choices.length > 0) {
+                        const botResponse = data.choices[0].message.content;
+                        addMessage(botResponse, false);
+                    } else {
+                        addMessage("Sorry, I couldn't process that. Could you try again?", false);
+                    }
+                }, randomDelay);
+                
             } catch (error) {
-                hideLoading();
-                console.error('Error:', error);
-                addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
+                // Still maintain a minimum delay for errors too
+                setTimeout(() => {
+                    hideLoading();
+                    console.error('Error:', error);
+                    addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
+                }, 5000);
             }
         }
 

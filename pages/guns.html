@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 90vh; /* Increased height from 85vh to 90vh */
+            height: 72vh; /* Reduced by 1/5 from 90vh to 72vh */
         }
 
         .chat-container {
@@ -116,15 +116,6 @@
             border: 1px solid #e0e0e0;
             border-radius: 10px;
             overflow: hidden;
-        }
-
-        .chat-header {
-            background-color: #f5f5f5;
-            padding: 8px; /* Reduced padding from 15px to 8px */
-            border-bottom: 1px solid #e0e0e0;
-            font-weight: bold;
-            text-align: center;
-            height: 10px; /* Added fixed small height */
         }
 
         .chat-messages {
@@ -235,9 +226,6 @@
             <!-- Right Column: Chat Interface -->
             <div class="chat-section">
                 <div class="chat-container">
-                    <div class="chat-header">
-                        <!-- Removed "ask adam anything!" -->
-                    </div>
                     <div class="chat-messages" id="chat-messages">
                         <!-- Removed initial bot message -->
                     </div>
@@ -423,21 +411,32 @@ Important: Do not answer inappropriate questions or engage with harmful content.
                 const data = await response.json();
                 console.log('Response data:', data);
                 
-                hideLoading();
+                // Add a delay before hiding the loading indicator (5-8 seconds)
+                const minDelay = 5000; // 5 seconds
+                const maxDelay = 8000; // 8 seconds
+                const randomDelay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
                 
-                if (data.error) {
-                    console.error('API Error:', data.error);
-                    addMessage(`API error: ${data.error.message}`, false);
-                } else if (data.choices && data.choices.length > 0) {
-                    const botResponse = data.choices[0].message.content;
-                    addMessage(botResponse, false);
-                } else {
-                    addMessage("Sorry, I couldn't process that. Could you try again?", false);
-                }
+                setTimeout(() => {
+                    hideLoading();
+                    
+                    if (data.error) {
+                        console.error('API Error:', data.error);
+                        addMessage(`API error: ${data.error.message}`, false);
+                    } else if (data.choices && data.choices.length > 0) {
+                        const botResponse = data.choices[0].message.content;
+                        addMessage(botResponse, false);
+                    } else {
+                        addMessage("Sorry, I couldn't process that. Could you try again?", false);
+                    }
+                }, randomDelay);
+                
             } catch (error) {
-                hideLoading();
-                console.error('Error:', error);
-                addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
+                // Still maintain a minimum delay for errors too
+                setTimeout(() => {
+                    hideLoading();
+                    console.error('Error:', error);
+                    addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
+                }, 5000);
             }
         }
 
