@@ -11,24 +11,16 @@
     <style>
         .page-container {
             max-width: 1400px;
-            margin: 20px auto;  /* Adjusted to account for border spacing */
-            padding: 30px 60px;
+            margin: 0 auto;
+            padding: 20px;
             position: relative;
-            /* Ensure content stays within the masked area */
-            width: calc(100% - 40px);  /* Account for left and right border spacing */
             background-color: #fdfdfd;
         }
 
         body {
             min-height: 100vh;
-            padding: 20px;  /* Match the border spacing */
             box-sizing: border-box;
             position: relative;
-            /* Enable scrolling within the masked area */
-            overflow-y: auto;
-            overflow-x: hidden;
-            /* Remove flex properties that might interfere with scrolling */
-            display: block;
             background-color: #fdfdfd;
         }
 
@@ -248,36 +240,38 @@
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <a href="../index.html" class="back-link">← back to grid</a>
-        
-        <div class="three-column-layout">
-            <!-- Left Column: Profile -->
-            <div class="profile-section">
-                <div class="photo-square" style="background-image: url('../images/barbie.jpeg');"></div>
-                <div class="profile-info">
-                    <h2>kennesha</h2>
-                    <p>fixated on barbie</p>
-                    <p style="margin-top: 20px; font-style: italic;">
-                        "i have over 300 barbies in my collection now. i just love to buy them. i started collecting them when i was five years old, and after my mother passed away when i was 14, i used to smell the new barbie doll smell and it reminded me of her. i've spent about $10,000 on my barbies. i keep them in a climate-controlled storage unit to protect them."
-                    </p>
-                </div>
-            </div>
-
-            <!-- Middle Column: Main Content -->
-            <div class="main-content">
-                <div class="photo-square large" style="background-image: url('../images/Kennesha.jpg');"></div>
-            </div>
-
-            <!-- Right Column: Chat Interface -->
-            <div class="chat-section">
-                <div class="chat-container">
-                    <div class="chat-messages" id="chat-messages">
-                        <!-- Removed initial bot message -->
+    <div class="content-area">
+        <div class="page-container">
+            <a href="../index.html" class="back-link">← back to grid</a>
+            
+            <div class="three-column-layout">
+                <!-- Left Column: Profile -->
+                <div class="profile-section">
+                    <div class="photo-square" style="background-image: url('../images/barbie.jpeg');"></div>
+                    <div class="profile-info">
+                        <h2>kennesha</h2>
+                        <p>fixated on barbie</p>
+                        <p style="margin-top: 20px; font-style: italic;">
+                            "i have over 300 barbies in my collection now. i just love to buy them. i started collecting them when i was five years old, and after my mother passed away when i was 14, i used to smell the new barbie doll smell and it reminded me of her. i've spent about $10,000 on my barbies. i keep them in a climate-controlled storage unit to protect them."
+                        </p>
                     </div>
-                    <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="i wonder..." />
-                        <button id="send-button">send</button>
+                </div>
+
+                <!-- Middle Column: Main Content -->
+                <div class="main-content">
+                    <div class="photo-square large" style="background-image: url('../images/Kennesha.jpg');"></div>
+                </div>
+
+                <!-- Right Column: Chat Interface -->
+                <div class="chat-section">
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Removed initial bot message -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="user-input" placeholder="i wonder..." />
+                            <button id="send-button">send</button>
+                        </div>
                     </div>
                 </div>
             </div>
