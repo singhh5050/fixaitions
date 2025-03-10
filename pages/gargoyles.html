@@ -220,7 +220,7 @@
                     <h2>georgina</h2>
                     <p>fixated on the moor</p>
                     <p style="margin-top: 20px; font-style: italic;">
-                        "i go to the dartmoor prison museum every tuesday, just the prison museum. i love it. the first time i went, i saw the bloodstain on the wall from this executed prisoner. i just felt this intense connection to moorland all of a sudden. i have a map of the moor above my bed. i constantly think about it. there's something so stark and harsh about it—it's like it's cut right through me."
+                        "i wanted to be one of those orphan kids who lived in a cabin in the woods. i also read jane austen, alone, in a british accent, and wrote down words i didn't know to look up later. and gargoyles. so cool. in another life, i could have been a gargoyle mason."
                     </p>
                 </div>
             </div>
@@ -292,7 +292,7 @@
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
                 if (currentSpeaker === "Georgina") {
-                    initialMessage.textContent = "hello! i'm georgina and i visit the dartmoor prison museum every tuesday. there's something about the moor that's just cut right through me. i have a map of dartmoor above my bed and think about it constantly. what would you like to know?";
+                    initialMessage.textContent = "hello! i'm georgina. i've always been drawn to books about the english moors. i was a bookish child and would read classics aloud in a british accent. i also developed a fascination with stone masonry and gargoyles. what would you like to know?";
                 } else {
                     initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
                 }
@@ -306,8 +306,8 @@
             let examples = "";
             
             if (speakerName === "Georgina") {
-                interests = "the dartmoor prison museum and the moorlands";
-                examples = "your fascination with the moor or your weekly visits to the dartmoor prison museum";
+                interests = "the english moors, classic literature, stone masonry and gargoyles";
+                examples = "your fascination with the moors from classic books, your interest in masonry craftsmanship, or how you used to read with a british accent";
             } else {
                 interests = "your unique interests and experiences";
                 examples = "specific stories or details from your life";
