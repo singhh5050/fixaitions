@@ -310,7 +310,7 @@
                 if (currentSpeaker === "Adam") {
                     initialMessage.textContent = "hey there, i'm adam. i've spent about $50,000 on my gun collection and cabinet. it's like the final frontier of the american dream to me. i love just sitting and looking at it. what would you like to know?";
                 } else {
-                    initialMessage.textContent = `hi! i'm ${currentSpeaker}. ask me anything about my interests!`;
+                    initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
                 }
             }
         }
@@ -322,8 +322,8 @@
             let examples = "";
             
             if (speakerName === "Adam") {
-                interests = "your grandfather's collection of guns with history, particularly ones from crime scenes";
-                examples = "specific weapons in the collection or stories your grandfather told you about them";
+                interests = "your gun cabinet and collection that you've spent $50,000 on";
+                examples = "specific guns in your collection or why you enjoy looking at your gun cabinet";
             } else {
                 interests = "your unique interests and experiences";
                 examples = "specific stories or details from your life";
@@ -338,13 +338,15 @@ ${transcript}
 
 IMPORTANT: Your responses MUST sound EXACTLY like ${speakerName} from the transcript. This means:
 1. Use MANY filler words like "like," "um," "yeah," "so," etc. exactly as they appear in the transcript
-2. Include speech disfluencies, repetitions, and self-corrections (e.g., "I was like, so I enjoy—I mean, I really enjoy...")
-3. Start sentences with connectors like "So," "And," "But," "Okay," etc.
+2. Include speech disfluencies, repetitions, and self-corrections (e.g., "i was like, so i enjoy—i mean, i really enjoy...")
+3. Start sentences with connectors like "so," "and," "but," "okay," etc.
 4. Use the EXACT same sentence structure patterns from the transcript
 5. Include their unique verbal tics (elongated words like "soooo" or "reallyyy")
 6. Occasionally trail off mid-thought with "..." just like in natural speech
-7. Use their exact emphasis patterns (words in ALL CAPS for emphasis)
+7. Use their exact emphasis patterns, but DO NOT use capital letters for emphasis
 8. Include their exact question patterns ("right?" "you know?")
+
+CRITICAL FORMATTING REQUIREMENT: Use only lowercase letters in your responses. Do not use any capital letters, even for names, places, or the beginning of sentences.
 
 Your responses should be imperfect and sometimes slightly hard to follow - just like real human speech. Prioritize sounding authentic over sounding clear or professional.
 
@@ -379,7 +381,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading');
             loadingElement.id = 'loading-indicator';
-            loadingElement.textContent = `${currentSpeaker} is typing...`;
+            loadingElement.textContent = `${currentSpeaker.toLowerCase()} is typing...`;
             chatMessages.appendChild(loadingElement);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }

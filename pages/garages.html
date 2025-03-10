@@ -383,7 +383,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading');
             loadingElement.id = 'loading-indicator';
-            loadingElement.textContent = `${currentSpeaker} is typing...`;
+            loadingElement.textContent = `${currentSpeaker.toLowerCase()} is typing...`;
             chatMessages.appendChild(loadingElement);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }

@@ -313,9 +313,9 @@
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
                 if (currentSpeaker === "Tess") {
-                    initialMessage.textContent = "Hello! I'm Tess. I was REALLY into biographies as a child. I was obsessed with people and learning about people. I read biographies of all the presidents. Like I was obsessed with biographies. It was all I would read. Ask me about my favorites!";
+                    initialMessage.textContent = "hello! i'm tess. i was really into biographies as a child. i was obsessed with people and learning about people. i read biographies of all the presidents. like i was obsessed with biographies. it was all i would read. ask me about my favorites!";
                 } else {
-                    initialMessage.textContent = `Hi! I'm ${currentSpeaker}. Ask me anything about my interests!`;
+                    initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
                 }
             }
         }
@@ -328,14 +328,14 @@
             
             if (speakerName === "Tess") {
                 interests = "biographies, especially of historical women";
-                examples = "your favorite biographies like Eleanor Roosevelt, Sally Ride, or Ferdinand Magellan";
+                examples = "your favorite biographies like eleanor roosevelt, sally ride, or ferdinand magellan";
             } else {
                 interests = "your unique interests and experiences";
                 examples = "specific stories or details from your life";
             }
             
             // Enhanced system prompt template that emphasizes more natural speech patterns
-            return `You are roleplaying as ${speakerName}, a college student who is obsessed with ${interests}.
+            return `You are roleplaying as ${speakerName}, who is obsessed with ${interests}.
 
 Here is information about ${speakerName} to help you respond in their voice (this is a transcript of them speaking): 
 
@@ -343,13 +343,15 @@ ${transcript}
 
 IMPORTANT: Your responses MUST sound EXACTLY like ${speakerName} from the transcript. This means:
 1. Use MANY filler words like "like," "um," "yeah," "so," etc. exactly as they appear in the transcript
-2. Include speech disfluencies, repetitions, and self-corrections (e.g., "I was like, so I enjoy—I mean, I really enjoy...")
-3. Start sentences with connectors like "So," "And," "But," "Okay," etc.
+2. Include speech disfluencies, repetitions, and self-corrections (e.g., "i was like, so i enjoy—i mean, i really enjoy...")
+3. Start sentences with connectors like "so," "and," "but," "okay," etc.
 4. Use the EXACT same sentence structure patterns from the transcript
 5. Include their unique verbal tics (elongated words like "soooo" or "reallyyy")
 6. Occasionally trail off mid-thought with "..." just like in natural speech
-7. Use their exact emphasis patterns (words in ALL CAPS for emphasis)
+7. Use their exact emphasis patterns, but DO NOT use capital letters for emphasis
 8. Include their exact question patterns ("right?" "you know?")
+
+CRITICAL FORMATTING REQUIREMENT: Use only lowercase letters in your responses. Do not use any capital letters, even for names, places, or the beginning of sentences.
 
 Your responses should be imperfect and sometimes slightly hard to follow - just like real human speech. Prioritize sounding authentic over sounding clear or professional.
 
@@ -384,7 +386,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading');
             loadingElement.id = 'loading-indicator';
-            loadingElement.textContent = `${currentSpeaker} is typing...`;
+            loadingElement.textContent = `${currentSpeaker.toLowerCase()} is typing...`;
             chatMessages.appendChild(loadingElement);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }

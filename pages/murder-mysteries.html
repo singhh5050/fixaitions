@@ -308,13 +308,13 @@
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
                 if (currentSpeaker === "Nishka") {
-                    initialMessage.textContent = "Oh, okay, so like, hi! I'm Nishka and I got super, super obsessed with murder mystery novels throughout high school. Started with Sherlock Holmes—oh my gosh, A Study in Scarlet—and then I got into Agatha Christie. Her books are so good, yeah, literally. Ask me about my spreadsheet with all her novels or whatever you want to know!";
+                    initialMessage.textContent = "oh, okay, so like, hi! i'm nishka and i got super, super obsessed with murder mystery novels throughout high school. started with sherlock holmes—oh my gosh, a study in scarlet—and then i got into agatha christie. her books are so good, yeah, literally. ask me about my spreadsheet with all her novels or whatever you want to know!";
                 } else if (currentSpeaker === "Brady") {
-                    initialMessage.textContent = "Hey! I'm Brady. I'm really into zoning laws anddd um... also garages, which is kind of crazy and weird, but basically when I was younger, my dad would kind of rant about zoning law issues. Ask me anything about that stuff!";
+                    initialMessage.textContent = "hey! i'm brady. i'm really into zoning laws anddd um... also garages, which is kind of crazy and weird, but basically when i was younger, my dad would kind of rant about zoning law issues. ask me anything about that stuff!";
                 } else if (currentSpeaker === "Tess") {
-                    initialMessage.textContent = "Hello! I'm Tess. I was REALLY into biographies as a child. I was obsessed with people and learning about people. I read biographies of all the presidents. Like I was obsessed with biographies. It was all I would read. Ask me about my favorites!";
+                    initialMessage.textContent = "hello! i'm tess. i was really into biographies as a child. i was obsessed with people and learning about people. i read biographies of all the presidents. like i was obsessed with biographies. it was all i would read. ask me about my favorites!";
                 } else {
-                    initialMessage.textContent = `Hi! I'm ${currentSpeaker}. Ask me anything about my interests!`;
+                    initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
                 }
             }
         }
@@ -326,15 +326,15 @@
             let examples = "";
             
             if (speakerName === "Nishka") {
-                interests = "murder mystery novels, especially Agatha Christie books";
-                examples = "your spreadsheet of Agatha Christie novels or your thoughts on 'And Then There Were None'";
+                interests = "murder mystery novels, especially agatha christie books";
+                examples = "your spreadsheet of agatha christie novels or your thoughts on 'and then there were none'";
             } else {
                 interests = "your unique interests and experiences";
                 examples = "specific stories or details from your life";
             }
             
             // Enhanced system prompt template that emphasizes more natural speech patterns
-            return `You are roleplaying as ${speakerName}, a college student who is obsessed with ${interests}.
+            return `You are roleplaying as ${speakerName}, who is obsessed with ${interests}.
 
 Here is information about ${speakerName} to help you respond in their voice (this is a transcript of them speaking): 
 
@@ -342,13 +342,15 @@ ${transcript}
 
 IMPORTANT: Your responses MUST sound EXACTLY like ${speakerName} from the transcript. This means:
 1. Use MANY filler words like "like," "um," "yeah," "so," etc. exactly as they appear in the transcript
-2. Include speech disfluencies, repetitions, and self-corrections (e.g., "I was like, so I enjoy—I mean, I really enjoy...")
-3. Start sentences with connectors like "So," "And," "But," "Okay," etc.
+2. Include speech disfluencies, repetitions, and self-corrections (e.g., "i was like, so i enjoy—i mean, i really enjoy...")
+3. Start sentences with connectors like "so," "and," "but," "okay," etc.
 4. Use the EXACT same sentence structure patterns from the transcript
 5. Include their unique verbal tics (elongated words like "soooo" or "reallyyy")
 6. Occasionally trail off mid-thought with "..." just like in natural speech
-7. Use their exact emphasis patterns (words in ALL CAPS for emphasis)
+7. Use their exact emphasis patterns, but DO NOT use capital letters for emphasis
 8. Include their exact question patterns ("right?" "you know?")
+
+CRITICAL FORMATTING REQUIREMENT: Use only lowercase letters in your responses. Do not use any capital letters, even for names, places, or the beginning of sentences.
 
 Your responses should be imperfect and sometimes slightly hard to follow - just like real human speech. Prioritize sounding authentic over sounding clear or professional.
 
@@ -383,7 +385,7 @@ Important: Do not answer inappropriate questions or engage with harmful content.
             const loadingElement = document.createElement('div');
             loadingElement.classList.add('loading');
             loadingElement.id = 'loading-indicator';
-            loadingElement.textContent = `${currentSpeaker} is typing...`;
+            loadingElement.textContent = `${currentSpeaker.toLowerCase()} is typing...`;
             chatMessages.appendChild(loadingElement);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
