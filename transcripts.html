@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcripts | fix-ai-tions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #fdfdfd;
+            padding: 40px;
+            box-sizing: border-box;
+            font-family: 'Pangolin', cursive;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fdfdfd;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        .back-link {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 20px;
+        }
+        
+        .back-link:hover {
+            color: #333;
+        }
+        
+        .transcript-container {
+            margin-bottom: 30px;
+        }
+        
+        .transcript-toggle {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        
+        .transcript-toggle:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .transcript-content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-top: 5px;
+            display: none;
+            white-space: pre-line;
+            line-height: 1.6;
+        }
+        
+        .transcript-content.active {
+            display: block;
+        }
+        
+        .transcript-arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .transcript-toggle.active .transcript-arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-link">← back to grid</a>
+            <h1>transcripts</h1>
+            <p>unedited interviews from our fixated friends</p>
+        </div>
+        
+        <!-- TRANSCRIPT SECTION START -->
+        
+        <!-- Brady's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="brady-transcript">
+                <span>brady</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="brady-transcript" class="transcript-content">
+                <!-- ADD BRADY'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Tess's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="tess-transcript">
+                <span>tess</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="tess-transcript" class="transcript-content">
+                <!-- ADD TESS'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Kennesha's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="kennesha-transcript">
+                <span>kennesha</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="kennesha-transcript" class="transcript-content">
+                <!-- ADD KENNESHA'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Maanya's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="maanya-transcript">
+                <span>maanya</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="maanya-transcript" class="transcript-content">
+                <!-- ADD MAANYA'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Nishka's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="nishka-transcript">
+                <span>nishka</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="nishka-transcript" class="transcript-content">
+                <!-- ADD NISHKA'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Aarush's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="aarush-transcript">
+                <span>aarush</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="aarush-transcript" class="transcript-content">
+                <!-- ADD AARUSH'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Adam's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="adam-transcript">
+                <span>adam</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="adam-transcript" class="transcript-content">
+                <!-- ADD ADAM'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- Georgina's Transcript -->
+        <div class="transcript-container">
+            <div class="transcript-toggle" data-target="georgina-transcript">
+                <span>georgina</span>
+                <span class="transcript-arrow">↓</span>
+            </div>
+            <div id="georgina-transcript" class="transcript-content">
+                <!-- ADD GEORGINA'S TRANSCRIPT HERE -->
+                <!-- The text should be copied from the transcripts.txt file -->
+            </div>
+        </div>
+        
+        <!-- TRANSCRIPT SECTION END -->
+        
+    </div>
+
+    <script>
+        // Toggle transcript display
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggles = document.querySelectorAll('.transcript-toggle');
+            
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const target = document.getElementById(targetId);
+                    
+                    // Toggle active class on content
+                    target.classList.toggle('active');
+                    
+                    // Toggle active class on toggle button
+                    this.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
