@@ -32,17 +32,11 @@
     }
     
     .header {
-        min-height: 120px;
-        padding-top: 15px;
+        gap: 15px;
     }
     
-    .header .title-container {
-        margin-top: 15px;
-    }
-    
-    .mission-link,
-    .transcripts-link {
-        margin-top: 8px;
+    .header h1 {
+        font-size: 36px;
     }
 }
 
@@ -74,47 +68,16 @@
         height: 60vh;
     }
     
-    /* Fix the back link positioning and z-index */
-    .back-link {
-        position: relative;
-        display: block;
-        margin-bottom: 20px;
-        z-index: 10;
-        font-size: 18px;
-        padding: 5px 0;
-        width: fit-content;
-    }
-    
-    .header h1 {
-        font-size: 32px;
-        margin-bottom: 20px;
-    }
-    
-    .profile-info h2 {
-        font-size: 24px;
-    }
-    
-    .profile-info p {
-        font-size: 16px;
-    }
-    
     /* Update header grid for smaller screens but maintain 3 columns */
     .header {
         grid-template-columns: 1fr auto 1fr;
         gap: 10px;
         margin-bottom: 20px;
-        min-height: 100px;
-        padding-top: 12px;
-    }
-    
-    .header .title-container {
-        margin-top: 12px;
     }
     
     .mission-link,
     .transcripts-link {
         font-size: 18px;
-        margin-top: 6px;
     }
     
     .mission-link {
@@ -123,15 +86,6 @@
     
     .transcripts-link {
         padding-right: 5px;
-    }
-    
-    /* Create a layout for the links below the title */
-    .header .nav-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
-        z-index: 10;
     }
 }
 
@@ -174,92 +128,82 @@
         padding-right: 0;
     }
     
-    /* Ensure the links have enough space and are easy to tap */
-    .header .nav-links {
-        padding: 5px;
-    }
-    
     /* Keep 3-column layout but adjust sizes for very small screens */
     .header {
         grid-template-columns: 1fr auto 1fr;
         margin-bottom: 15px;
-        gap: 10px;
+        gap: 5px;
+    }
+}
+
+/* For extremely small screens */
+@media (max-width: 360px) {
+    .header h1 {
+        font-size: 20px;
     }
     
-    /* For extremely small screens, adjust further */
-    @media (max-width: 360px) {
-        .header h1 {
-            font-size: 20px;
-        }
-        
-        .header p {
-            font-size: 12px;
-        }
-        
-        .mission-link, .transcripts-link {
-            font-size: 14px;
-        }
-        
-        .header {
-            gap: 5px;
-        }
+    .header p {
+        font-size: 12px;
     }
     
-    /* Rest of the existing styles */
-    .chat-container {
-        height: auto;
-        min-height: 70vh;
-    }
-    
-    .chat-messages {
-        max-height: 50vh;
-    }
-    
-    .chat-input input {
-        padding: 8px;
-    }
-    
-    .chat-input button {
-        padding: 8px 10px;
+    .mission-link, .transcripts-link {
         font-size: 14px;
     }
-    
-    .message {
-        padding: 8px 12px;
-        font-size: 14px;
-        max-width: 90%;
-    }
-    
-    .photo-square {
-        height: 150px;
-        width: 150px;
-    }
-    
-    .profile-info h2 {
-        font-size: 22px;
-        margin-top: 10px;
-    }
-    
-    .profile-info p {
-        font-size: 14px;
-    }
-    
-    .back-link {
-        font-size: 16px;
-    }
-    
-    /* Adjust title and keep it centered */
-    .header {
-        min-height: 90px;
-        padding-top: 10px;
-    }
-    
-    .header .title-container {
-        margin-top: 10px;
-    }
-    
-    .mission-link,
-    .transcripts-link {
-        margin-top: 5px;
-    }
+}
+
+/* Rest of the existing styles */
+.chat-container {
+    height: auto;
+    min-height: 70vh;
+}
+
+.chat-messages {
+    max-height: 50vh;
+}
+
+.chat-input input {
+    padding: 8px;
+}
+
+.chat-input button {
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+.message {
+    padding: 8px 12px;
+    font-size: 14px;
+    max-width: 90%;
+}
+
+.photo-square {
+    height: 150px;
+    width: 150px;
+}
+
+.profile-info h2 {
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.profile-info p {
+    font-size: 14px;
+}
+
+.back-link {
+    font-size: 16px;
+}
+
+.header {
+    min-height: 90px;
+    padding-top: 10px;
+}
+
+.header .title-container {
+    margin-top: 10px;
+}
+
+.mission-link,
+.transcripts-link {
+    margin-top: 5px;
 } 
