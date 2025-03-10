@@ -15,6 +15,21 @@
       "methods": ["GET", "POST", "OPTIONS"]
     },
     { 
+      "src": "/api/chat-debug/(?<model>[^/]+)",
+      "dest": "/api/chat-debug/[model].js?model=$model",
+      "methods": ["GET", "POST", "OPTIONS"]
+    },
+    { 
+      "src": "/api/env-test",
+      "dest": "/api/env-test/index.js",
+      "methods": ["GET", "OPTIONS"]
+    },
+    { 
+      "src": "/api/openai-test",
+      "dest": "/api/openai-test/index.js",
+      "methods": ["GET", "OPTIONS"]
+    },
+    { 
       "src": "/api/test", 
       "dest": "/api/test.js",
       "methods": ["GET", "POST", "OPTIONS"]
