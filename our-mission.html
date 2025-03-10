@@ -142,6 +142,13 @@
             border-left: 3px solid #f0f0f0;
         }
         
+        /* Special styling for the AI hallucination image that was too large */
+        .mission-image.small-image {
+            max-width: 400px;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        
         @media (max-width: 768px) {
             .mission-image {
                 max-width: 100%;
@@ -246,7 +253,7 @@
                 
                 <p>We ultimately reached a point where we had the bare bones of our site laid out, we secured our interviews, and we nailed our purpose down to a tee, but we were still left fighting small functionality and stylistic errors with our website and the AI program (Cursor) we used to create it. Which was exceedingly ironic considering our project was on AI as well. Upon first inception of one of our interviewee's bios, the AI hallucinated an entirely fictional story.</p>
                 
-                <img src="images/adam hallucination.jpg" alt="Example of AI hallucination" class="mission-image">
+                <img src="images/adam hallucination.jpg" alt="Example of AI hallucination" class="mission-image small-image">
                 <p class="image-caption">AI can be finicky.</p>
                 
                 <img src="images/prompt engineering.jpg" alt="Prompt engineering example" class="mission-image">
