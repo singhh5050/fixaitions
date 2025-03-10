@@ -8,24 +8,65 @@
     box-sizing: border-box;
 }
 
-/* Hide scrollbars but maintain scroll functionality */
+/* Hide scrollbars but maintain scroll functionality - universal approach */
+*::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+/* Hide scrollbars for specific elements */
+html::-webkit-scrollbar,
 body::-webkit-scrollbar,
 .content-area::-webkit-scrollbar,
 .chat-messages::-webkit-scrollbar,
-.page-container::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-    display: none;
+.page-container::-webkit-scrollbar,
+.container::-webkit-scrollbar,
+div::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
 }
 
 /* For Firefox */
-body, .content-area, .chat-messages, .page-container {
-    scrollbar-width: none;
+* {
+    scrollbar-width: none !important;
+}
+
+html, body, .content-area, .chat-messages, .page-container, .container, div {
+    scrollbar-width: none !important;
 }
 
 /* For IE and Edge */
-body, .content-area, .chat-messages, .page-container {
-    -ms-overflow-style: none;
+html, body, .content-area, .chat-messages, .page-container, .container, div {
+    -ms-overflow-style: none !important;
+}
+
+/* Additional scrollbar hiding for any possible overflow elements */
+.chat-container, 
+.three-column-layout,
+.profile-section,
+.main-content,
+.chat-section,
+.grid {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.chat-container::-webkit-scrollbar, 
+.three-column-layout::-webkit-scrollbar,
+.profile-section::-webkit-scrollbar,
+.main-content::-webkit-scrollbar,
+.chat-section::-webkit-scrollbar,
+.grid::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+/* Ensure overflow is hidden in specific cases but scrolling still works */
+html, body {
+    overflow-x: hidden !important;
 }
 
 /* Main content container with clipping */
