@@ -135,6 +135,7 @@ body::before {
     z-index: 2; /* Above the white background, below the border */
     padding: 20px;
     border-radius: 40px;
+    pointer-events: auto; /* Ensure clicks work inside */
 }
 
 /* Remove the old container border */
@@ -481,5 +482,26 @@ body::before {
 }
 
 .mission-link:hover {
+    color: #333;
+}
+
+/* Add or update back link styling */
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 20px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 10; /* Ensure it's above other elements */
+    padding: 5px;
+    width: fit-content;
+    pointer-events: auto; /* Explicitly enable click events */
+}
+
+.back-link:hover {
     color: #333;
 } 
