@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsive.css">
     <style>
         .page-container {
             max-width: 1400px;
@@ -212,6 +213,10 @@
                 grid-column: 1 / span 2;
                 grid-row: 2;
             }
+            
+            .page-container {
+                padding: 20px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -235,6 +240,72 @@
             .chat-section {
                 grid-row: 3;
                 height: 60vh;
+            }
+            
+            .page-container {
+                padding: 15px;
+            }
+            
+            .back-link {
+                position: relative;
+                display: block;
+                margin-bottom: 20px;
+            }
+            
+            .profile-info h2 {
+                font-size: 24px;
+            }
+            
+            .profile-info p {
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-container {
+                padding: 10px;
+            }
+            
+            .three-column-layout {
+                gap: 15px;
+            }
+            
+            .chat-container {
+                height: auto;
+                min-height: 70vh;
+            }
+            
+            .chat-messages {
+                max-height: 50vh;
+            }
+            
+            .chat-input input {
+                padding: 8px;
+            }
+            
+            .chat-input button {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            
+            .message {
+                padding: 8px 12px;
+                font-size: 14px;
+                max-width: 90%;
+            }
+            
+            .photo-square {
+                height: 150px;
+                width: 150px;
+            }
+            
+            .profile-info h2 {
+                font-size: 22px;
+                margin-top: 10px;
+            }
+            
+            .profile-info p {
+                font-size: 14px;
             }
         }
     </style>

@@ -135,6 +135,7 @@ body::before {
     z-index: 2; /* Above the white background, below the border */
     padding: 20px;
     border-radius: 40px;
+    pointer-events: auto; /* Ensure clicks work inside */
 }
 
 /* Remove the old container border */
@@ -257,6 +258,13 @@ body::before {
 @media (max-width: 1024px) {
     .grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .page-container, .container {
+        padding: 30px;
+    }
+    
+    .three-column-layout {
         gap: 20px;
     }
 }
@@ -264,18 +272,75 @@ body::before {
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
     }
     
     .container {
-        padding: 60px 40px;  /* Adjusted padding for smaller screens */
+        padding: 15px;
     }
     
     .container::before {
-        top: -20px;
-        left: -20px;
-        right: -20px;
-        bottom: -20px;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+    }
+    
+    /* Adjust three-column layout to two columns */
+    .three-column-layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    /* Profile section spans full width in first row */
+    .profile-section {
+        grid-column: 1 / -1;
+        padding: 15px 0;
+    }
+    
+    /* Main content and chat section in second row */
+    .main-content {
+        grid-column: 1 / -1;
+    }
+    
+    .chat-section {
+        grid-column: 1 / -1;
+    }
+    
+    /* Adjust header and navigation */
+    .mission-link, .transcripts-link {
+        position: static;
+        display: block;
+        text-align: center;
+        margin: 10px 0;
+        transform: none;
+    }
+    
+    .header {
+        padding-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .header h1 {
+        font-size: 36px;
+    }
+    
+    /* Responsive adjustments for the hand-drawn border */
+    body::before {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 30px;
+    }
+    
+    /* Responsive adjustments for the content area */
+    .content-area {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        padding: 15px;
+        border-radius: 30px;
     }
 }
 
@@ -283,4 +348,160 @@ body::before {
     .grid {
         grid-template-columns: 1fr;
     }
+    
+    /* Further simplify layouts */
+    .page-container, .container {
+        padding: 10px;
+    }
+    
+    /* Adjust spacing and font sizes */
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .header p {
+        font-size: 16px;
+    }
+    
+    .back-link {
+        font-size: 16px;
+        left: 10px;
+        top: 10px;
+    }
+    
+    /* Ensure chat section is usable on small screens */
+    .chat-container {
+        height: 70vh;
+    }
+    
+    .chat-messages {
+        max-height: 60vh;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+    
+    /* Ensure images are properly sized */
+    .photo-square {
+        height: 150px;
+    }
+    
+    /* Ensure images are properly sized */
+    body::before {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border-width: 1.5px;
+        border-radius: 20px;
+    }
+    
+    /* Responsive adjustments for the content area */
+    .content-area {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 10px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Extra small devices */
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .grid-item h3 {
+        font-size: 16px;
+    }
+    
+    .chat-input input {
+        padding: 8px;
+    }
+    
+    .chat-input button {
+        padding: 8px 12px;
+    }
+}
+
+/* Header and navigation styling */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 20px;
+    color: #666;
+}
+
+/* Navigation container for larger screens */
+.nav-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    pointer-events: none; /* Allow clicks to pass through container */
+}
+
+.transcripts-link {
+    position: absolute;
+    right: 5%;
+    top: 65%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    pointer-events: auto; /* Re-enable clicks on the link */
+}
+
+.transcripts-link:hover {
+    color: #333;
+}
+
+.mission-link {
+    position: absolute;
+    left: 5%;
+    top: 65%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    pointer-events: auto; /* Re-enable clicks on the link */
+}
+
+.mission-link:hover {
+    color: #333;
+}
+
+/* Add or update back link styling */
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-size: 20px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 10; /* Ensure it's above other elements */
+    padding: 5px;
+    width: fit-content;
+    pointer-events: auto; /* Explicitly enable click events */
+}
+
+.back-link:hover {
+    color: #333;
 } 
