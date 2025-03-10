@@ -70,9 +70,14 @@
         margin-bottom: 20px;
     }
     
+    .header {
+        padding: 15px 0 25px; /* Adjust padding for smaller screens */
+    }
+    
     .header h1 {
         font-size: 32px;
         margin-bottom: 30px; /* Increase bottom margin of title */
+        padding: 15px 0; /* Maintain vertical padding on smaller screens */
     }
     
     .profile-info h2 {
@@ -97,7 +102,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-bottom: 10px;
+        padding-bottom: 20px; /* Extra padding at the bottom */
     }
     
     /* Style the navigation links to be horizontally centered */
