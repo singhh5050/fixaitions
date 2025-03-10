@@ -446,6 +446,14 @@ body::before {
     color: #666;
 }
 
+/* Specific styling for the subtitle */
+.subtitle {
+    margin-bottom: 25px;
+    display: block;
+    position: relative;
+    z-index: 1; /* Ensure it's above the nav container */
+}
+
 /* Navigation container for larger screens */
 .nav-container {
     position: absolute;
