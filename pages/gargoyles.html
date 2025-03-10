@@ -106,7 +106,7 @@
             background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            height: 85vh; /* Increased height */
+            height: 90vh; /* Increased height from 85vh to 90vh */
         }
 
         .chat-container {
@@ -120,10 +120,11 @@
 
         .chat-header {
             background-color: #f5f5f5;
-            padding: 15px;
+            padding: 8px; /* Reduced padding from 15px to 8px */
             border-bottom: 1px solid #e0e0e0;
             font-weight: bold;
             text-align: center;
+            height: 10px; /* Added fixed small height */
         }
 
         .chat-messages {
@@ -234,15 +235,13 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        ask georgina anything!
+                        <!-- Removed "ask georgina anything!" -->
                     </div>
                     <div class="chat-messages" id="chat-messages">
-                        <div class="message bot-message">
-                            hello! i'm georgina. i've always been drawn to books about the english moors. i was a bookish child and would read classics aloud in a british accent. i also developed a fascination with stone masonry and gargoyles. what would you like to know?
-                        </div>
+                        <!-- Removed initial bot message -->
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="" />
+                        <input type="text" id="user-input" placeholder="i wonder..." />
                         <button id="send-button">send</button>
                     </div>
                 </div>
