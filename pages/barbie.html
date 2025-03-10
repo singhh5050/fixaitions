@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbie | Fixations</title>
+    <title>barbie | fix-ai-tions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
@@ -213,33 +213,17 @@
 </head>
 <body>
     <div class="page-container">
-        <a href="../index.html" class="back-link">← Back to Grid</a>
+        <a href="../index.html" class="back-link">← back to grid</a>
         
         <div class="three-column-layout">
             <!-- Left Column: Profile -->
             <div class="profile-section">
                 <div class="photo-square" style="background-image: url('../images/barbie.jpeg');"></div>
                 <div class="profile-info">
-                    <h2>Kennesha Garg</h2>
-                    <p>Fixated on Barbie</p>
+                    <h2>kennesha</h2>
+                    <p>fixated on barbie</p>
                     <p style="margin-top: 20px; font-style: italic;">
-                        "I was OBSESSED with<br>
-                        Barbie dolls, but my<br>
-                        friend once told me that<br>
-                        Barbies come alive at<br>
-                        night. I was really<br>
-                        scared, like, what if<br>
-                        they burn my kitchen<br>
-                        down? So I put a Barbie<br>
-                        in the kitchen, left out<br>
-                        cookie ingredients, and<br>
-                        was like, 'If Barbies<br>
-                        come alive, they'll make<br>
-                        me a cookie.' The next<br>
-                        morning, no cookie.<br>
-                        Hypothesis proven:<br>
-                        Barbies do not come<br>
-                        alive at night."
+                        "i have over 300 barbies in my collection now. i just love to buy them. i started collecting them when i was five years old, and after my mother passed away when i was 14, i used to smell the new barbie doll smell and it reminded me of her. i've spent about $10,000 on my barbies. i keep them in a climate-controlled storage unit to protect them."
                     </p>
                 </div>
             </div>
@@ -253,16 +237,16 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        Chat with Kennesha about Barbie
+                        chat with kennesha about barbie
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <div class="message bot-message">
-                            Hi there! I'm Kennesha. I was obsessed with Barbie dolls growing up. Ask me anything about my Barbie experiments or collection!
+                            hi there! i'm kennesha and i've been collecting barbies since i was 5 years old. i now have over 300 dolls in my collection! ask me anything about my barbie obsession!
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="Type your message here..." />
-                        <button id="send-button">Send</button>
+                        <input type="text" id="user-input" placeholder="type your message here..." />
+                        <button id="send-button">send</button>
                     </div>
                 </div>
             </div>
@@ -311,9 +295,9 @@
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
                 if (currentSpeaker === "Kennesha") {
-                    initialMessage.textContent = "Hey! I'm Kennesha and I was sooo into Barbies when I was little. I had this whole scientific approach to them—I'd set up these experiments to see if they'd come alive at night. Ask me about my Barbie hypothesis testing!";
+                    initialMessage.textContent = "hi! i'm kennesha. i've been collecting barbies since i was 5, and now i have over 300 of them! after my mom passed when i was 14, the smell of new barbie dolls reminded me of her. i've spent around $10,000 on my collection. what would you like to know?";
                 } else {
-                    initialMessage.textContent = `Hi! I'm ${currentSpeaker}. Ask me anything about my interests!`;
+                    initialMessage.textContent = `hi! i'm ${currentSpeaker}. ask me anything about my interests!`;
                 }
             }
         }

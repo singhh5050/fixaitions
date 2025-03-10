@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Moor | Fixations</title>
+    <title>the moor | fix-ai-tions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
@@ -210,28 +210,17 @@
 </head>
 <body>
     <div class="page-container">
-        <a href="../index.html" class="back-link">← Back to Grid</a>
+        <a href="../index.html" class="back-link">← back to grid</a>
         
         <div class="three-column-layout">
             <!-- Left Column: Profile -->
             <div class="profile-section">
-                <div class="photo-square" style="background-image: url('../images/moor.jpeg');"></div>
+                <div class="photo-square" style="background-image: url('../images/moor.jpg');"></div>
                 <div class="profile-info">
-                    <h2>Georgina Beaty</h2>
-                    <p>Fixated on The Moor</p>
+                    <h2>georgina</h2>
+                    <p>fixated on the moor</p>
                     <p style="margin-top: 20px; font-style: italic;">
-                        "I wanted to be one of<br>
-                        those orphan kids who<br>
-                        lived in a cabin in the<br>
-                        woods. I also read Jane<br>
-                        Austen, alone, in a<br>
-                        British accent, and<br>
-                        wrote down words I<br>
-                        didn't know to look up<br>
-                        later. And THE MOOR.<br>
-                        So cool. In another<br>
-                        life, I could have been<br>
-                        wandering the English moors."
+                        "i go to the dartmoor prison museum every tuesday, just the prison museum. i love it. the first time i went, i saw the bloodstain on the wall from this executed prisoner. i just felt this intense connection to moorland all of a sudden. i have a map of the moor above my bed. i constantly think about it. there's something so stark and harsh about it—it's like it's cut right through me."
                     </p>
                 </div>
             </div>
@@ -245,16 +234,16 @@
             <div class="chat-section">
                 <div class="chat-container">
                     <div class="chat-header">
-                        Chat with Georgina about The Moor
+                        chat with georgina about the moor
                     </div>
                     <div class="chat-messages" id="chat-messages">
                         <div class="message bot-message">
-                            Hi there! I'm Georgina. I was obsessed with the English moors and reading Jane Austen. Ask me anything about my fascinations!
+                            hi there! i'm georgina. i'm absolutely fascinated by dartmoor. ask me anything about my connection to the moor!
                         </div>
                     </div>
                     <div class="chat-input">
-                        <input type="text" id="user-input" placeholder="Type your message here..." />
-                        <button id="send-button">Send</button>
+                        <input type="text" id="user-input" placeholder="type your message here..." />
+                        <button id="send-button">send</button>
                     </div>
                 </div>
             </div>
@@ -303,9 +292,9 @@
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
                 if (currentSpeaker === "Georgina") {
-                    initialMessage.textContent = "Hi! I'm Georgina. As a kid, I was always reading Jane Austen, um, alone, in a British accent. I'd write down words I didn't know and look them up later. And I loved the English moors! I imagined wandering through them just like in the novels. Ask me about it!";
+                    initialMessage.textContent = "hello! i'm georgina and i visit the dartmoor prison museum every tuesday. there's something about the moor that's just cut right through me. i have a map of dartmoor above my bed and think about it constantly. what would you like to know?";
                 } else {
-                    initialMessage.textContent = `Hi! I'm ${currentSpeaker}. Ask me anything about my interests!`;
+                    initialMessage.textContent = `hi! i'm ${currentSpeaker}. ask me anything about my interests!`;
                 }
             }
         }
