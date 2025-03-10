@@ -446,7 +446,7 @@ body::before {
 /* Navigation container for larger screens */
 .nav-container {
     position: absolute;
-    top: 50%;
+    top: 75%;
     transform: translateY(-50%);
     width: 100%;
     pointer-events: none; /* Allow clicks to pass through container */

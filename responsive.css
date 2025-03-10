@@ -26,6 +26,10 @@
     }
     
     /* Begin adjusting nav links positioning for medium screens */
+    .nav-container {
+        top: 85%; /* Increase vertical distance from title */
+    }
+    
     .mission-link, .transcripts-link, .nav-links {
         left: 2%;
         right: 2%;
@@ -68,7 +72,7 @@
     
     .header h1 {
         font-size: 32px;
-        margin-bottom: 20px;
+        margin-bottom: 30px; /* Increase bottom margin of title */
     }
     
     .profile-info h2 {
@@ -108,8 +112,10 @@
         flex-direction: row;
         justify-content: center;
         gap: 20px;
-        margin-top: 10px;
+        margin-top: 20px; /* Increase space between title and links */
         width: 100%;
+        position: static; /* Override absolute positioning */
+        transform: none;
     }
 }
 
