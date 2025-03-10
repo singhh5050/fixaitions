@@ -24,6 +24,12 @@
         grid-column: 1 / span 2;
         grid-row: 2;
     }
+    
+    /* Begin adjusting nav links positioning for medium screens */
+    .mission-link, .transcripts-link, .nav-links {
+        left: 2%;
+        right: 2%;
+    }
 }
 
 /* Small screens (mobile) */
@@ -62,6 +68,7 @@
     
     .header h1 {
         font-size: 32px;
+        margin-bottom: 20px;
     }
     
     .profile-info h2 {
@@ -72,12 +79,37 @@
         font-size: 16px;
     }
     
-    .mission-link, .transcripts-link {
+    /* Reposition mission and transcripts links below the title */
+    .mission-link, .transcripts-link, .nav-links {
         position: static;
         display: block;
         text-align: center;
-        margin: 10px 0;
+        margin: 10px auto;
         transform: none;
+    }
+    
+    /* Create a layout for the links below the title */
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 10px;
+    }
+    
+    /* Style the navigation links to be horizontally centered */
+    .header .nav-links {
+        margin: 5px 0;
+        padding: 5px 10px;
+    }
+    
+    /* Create a navigation container for the links */
+    .header .nav-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 10px;
+        width: 100%;
     }
 }
 
@@ -93,6 +125,13 @@
     
     .header h1 {
         font-size: 28px;
+    }
+    
+    /* Ensure the links have enough space and are easy to tap */
+    .header .nav-links {
+        font-size: 18px;
+        padding: 8px 15px;
+        margin: 10px 0;
     }
     
     .chat-container {
