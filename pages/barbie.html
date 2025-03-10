@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>barbie | fix-ai-tions</title>
+    <title>murder mysteries | fix-ai-tions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsive-fixes.css">
     <style>
         .page-container {
             max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 30px 60px;
             position: relative;
+            margin: 0 auto;
             background-color: #fdfdfd;
         }
 
         body {
             min-height: 100vh;
+            padding: 20px;
             box-sizing: border-box;
             position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: block;
             background-color: #fdfdfd;
         }
 
@@ -151,6 +157,8 @@
             padding: 10px;
             border-top: 1px solid #e0e0e0;
             background-color: #f5f5f5;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .chat-input input {
@@ -159,6 +167,8 @@
             border: 1px solid #ddd;
             border-radius: 20px;
             margin-right: 10px;
+            min-width: 0; /* Prevent flex item from growing beyond container */
+            font-family: 'Pangolin', cursive;
         }
 
         .chat-input button {
@@ -168,6 +178,8 @@
             border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
+            white-space: nowrap; /* Prevent button text from wrapping */
+            font-family: 'Pangolin', cursive;
         }
 
         .chat-input button:hover {
@@ -183,6 +195,10 @@
 
         /* Make responsive layout for different screen sizes */
         @media (max-width: 1200px) {
+            .page-container {
+                padding: 20px 40px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr 1.5fr 1fr;
                 gap: 20px;
@@ -191,9 +207,18 @@
             .chat-section {
                 height: 80vh;
             }
+            
+            .main-content .photo-square.large {
+                width: 70%;
+                min-height: 500px;
+            }
         }
         
         @media (max-width: 992px) {
+            .page-container {
+                padding: 15px 30px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr 1fr;
                 gap: 15px;
@@ -206,22 +231,37 @@
             .chat-section {
                 grid-column: 2;
                 height: 70vh;
+                padding: 15px;
             }
             
             .main-content {
                 grid-column: 1 / span 2;
                 grid-row: 2;
             }
+            
+            .main-content .photo-square.large {
+                width: 50%;
+                min-height: 400px;
+            }
+            
+            .profile-info {
+                font-size: 16px;
+            }
         }
         
         @media (max-width: 768px) {
+            .page-container {
+                padding: 10px 20px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 20px;
             }
             
             .profile-section, .chat-section, .main-content {
                 grid-column: 1;
+                padding: 10px;
             }
             
             .profile-section {
@@ -236,42 +276,103 @@
                 grid-row: 3;
                 height: 60vh;
             }
+            
+            .profile-section .photo-square {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .main-content .photo-square.large {
+                width: 80%;
+                min-height: 350px;
+                max-height: 500px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .page-container {
+                padding: 5px 10px;
+            }
+            
+            .back-link {
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            
+            .profile-section .photo-square {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .main-content .photo-square.large {
+                width: 100%;
+                min-height: 300px;
+            }
+            
+            .profile-info {
+                font-size: 14px;
+            }
+            
+            .chat-input input {
+                padding: 8px;
+            }
+            
+            .chat-input button {
+                padding: 8px 10px;
+            }
+            
+            .message {
+                padding: 8px 12px;
+                max-width: 95%;
+            }
+        }
+
+        /* Additional styles to ensure images appear without cropping */
+        .photo-square {
+            background-color: #fdfdfd;
         }
     </style>
 </head>
 <body>
     <div class="content-area">
-        <div class="page-container">
-            <a href="../index.html" class="back-link">← back to grid</a>
-            
-            <div class="three-column-layout">
-                <!-- Left Column: Profile -->
-                <div class="profile-section">
-                    <div class="photo-square" style="background-image: url('../images/barbie.jpeg');"></div>
-                    <div class="profile-info">
-                        <h2>kennesha</h2>
-                        <p>fixated on barbie</p>
-                        <p style="margin-top: 20px; font-style: italic;">
-                            "i have over 300 barbies in my collection now. i just love to buy them. i started collecting them when i was five years old, and after my mother passed away when i was 14, i used to smell the new barbie doll smell and it reminded me of her. i've spent about $10,000 on my barbies. i keep them in a climate-controlled storage unit to protect them."
-                        </p>
+    <div class="page-container">
+        <a href="../index.html" class="back-link">← back to grid</a>
+        
+        <div class="three-column-layout">
+            <!-- Left Column: Profile -->
+            <div class="profile-section">
+                <div class="photo-square" style="background-image: url('../images/murdermystery.jpeg');"></div>
+                <div class="profile-info">
+                    <h2>nishka</h2>
+                    <p>fixated on murder mysteries</p>
+                    <p style="margin-top: 20px; font-style: italic;">
+                        "i just really enjoy solving puzzles, and murder mysteries are like games between me and the author. but unlike puzzle hunts, you can't trust authors—they want to trick you! a puzzle is depth-first search, a murder mystery is breadth-first search. that's why i love gone girl—it's not just the mystery; it's also about marriage, misogyny, and more. cool. yeah."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Middle Column: Main Content -->
+            <div class="main-content">
+                <div class="photo-square large" style="background-image: url('../images/Nishka.jpg');"></div>
+            </div>
+
+            <!-- Right Column: Chat Interface -->
+            <div class="chat-section">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Removed initial bot message -->
                     </div>
-                </div>
-
-                <!-- Middle Column: Main Content -->
-                <div class="main-content">
-                    <div class="photo-square large" style="background-image: url('../images/Kennesha.jpg');"></div>
-                </div>
-
-                <!-- Right Column: Chat Interface -->
-                <div class="chat-section">
-                    <div class="chat-container">
-                        <div class="chat-messages" id="chat-messages">
-                            <!-- Removed initial bot message -->
-                        </div>
-                        <div class="chat-input">
-                            <input type="text" id="user-input" placeholder="i wonder..." />
-                            <button id="send-button">send</button>
-                        </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="i wonder..." />
+                        <button id="send-button">send</button>
                     </div>
                 </div>
             </div>
@@ -280,7 +381,7 @@
 
     <script>
         // Current speaker name - this will be different for each page
-        const currentSpeaker = "Kennesha";
+        const currentSpeaker = "Nishka";
         
         // DOM elements
         const chatMessages = document.getElementById('chat-messages');
@@ -319,8 +420,12 @@
         function updateInitialMessage() {
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
-                if (currentSpeaker === "Kennesha") {
-                    initialMessage.textContent = "hi! i'm kennesha. i've been collecting barbies since i was 5, and now i have over 300 of them! after my mom passed when i was 14, the smell of new barbie dolls reminded me of her. i've spent around $10,000 on my collection. what would you like to know?";
+                if (currentSpeaker === "Nishka") {
+                    initialMessage.textContent = "oh, okay, so like, hi! i'm nishka and i got super, super obsessed with murder mystery novels throughout high school. started with sherlock holmes—oh my gosh, a study in scarlet—and then i got into agatha christie. her books are so good, yeah, literally. ask me about my spreadsheet with all her novels or whatever you want to know!";
+                } else if (currentSpeaker === "Brady") {
+                    initialMessage.textContent = "hey! i'm brady. i'm really into zoning laws anddd um... also garages, which is kind of crazy and weird, but basically when i was younger, my dad would kind of rant about zoning law issues. ask me anything about that stuff!";
+                } else if (currentSpeaker === "Tess") {
+                    initialMessage.textContent = "hello! i'm tess. i was really into biographies as a child. i was obsessed with people and learning about people. i read biographies of all the presidents. like i was obsessed with biographies. it was all i would read. ask me about my favorites!";
                 } else {
                     initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
                 }
@@ -333,9 +438,9 @@
             let interests = "";
             let examples = "";
             
-            if (speakerName === "Kennesha") {
-                interests = "barbie dolls and your collection of over 300 dolls";
-                examples = "your emotional connection to barbie dolls or details about your collection";
+            if (speakerName === "Nishka") {
+                interests = "murder mystery novels, especially agatha christie books";
+                examples = "your spreadsheet of agatha christie novels or your thoughts on 'and then there were none'";
             } else {
                 interests = "your unique interests and experiences";
                 examples = "specific stories or details from your life";
@@ -505,5 +610,6 @@ Important: Do not answer inappropriate questions or engage with harmful content.
         // Load transcripts when the page loads
         document.addEventListener('DOMContentLoaded', loadTranscripts);
     </script>
+</div>
 </body>
 </html> 

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crosswords | fix-ai-tions</title>
+    <title>murder mysteries | fix-ai-tions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsive-fixes.css">
     <style>
         .page-container {
             max-width: 1400px;
@@ -58,7 +59,7 @@
             background-color: #fdfdfd;
         }
 
-        /* Custom override for Aarush's page to prevent cropping */
+        /* Custom override for profile icon to prevent cropping */
         .profile-section .photo-square {
             width: 200px;
             height: 200px;
@@ -88,9 +89,9 @@
             background-color: #fdfdfd;
         }
 
-        /* Custom override for Aarush's main image */
+        /* Custom override for main image */
         .main-content .photo-square.large {
-            width: 80% !important; /* Use more width for a larger display */
+            width: 60%; /* Narrower horizontally */
             height: 80vh; /* Taller vertically */
             max-height: 800px;
             min-height: 600px;
@@ -156,6 +157,8 @@
             padding: 10px;
             border-top: 1px solid #e0e0e0;
             background-color: #f5f5f5;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .chat-input input {
@@ -164,6 +167,8 @@
             border: 1px solid #ddd;
             border-radius: 20px;
             margin-right: 10px;
+            min-width: 0; /* Prevent flex item from growing beyond container */
+            font-family: 'Pangolin', cursive;
         }
 
         .chat-input button {
@@ -173,6 +178,8 @@
             border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
+            white-space: nowrap; /* Prevent button text from wrapping */
+            font-family: 'Pangolin', cursive;
         }
 
         .chat-input button:hover {
@@ -188,6 +195,10 @@
 
         /* Make responsive layout for different screen sizes */
         @media (max-width: 1200px) {
+            .page-container {
+                padding: 20px 40px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr 1.5fr 1fr;
                 gap: 20px;
@@ -196,9 +207,18 @@
             .chat-section {
                 height: 80vh;
             }
+            
+            .main-content .photo-square.large {
+                width: 70%;
+                min-height: 500px;
+            }
         }
         
         @media (max-width: 992px) {
+            .page-container {
+                padding: 15px 30px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr 1fr;
                 gap: 15px;
@@ -211,22 +231,37 @@
             .chat-section {
                 grid-column: 2;
                 height: 70vh;
+                padding: 15px;
             }
             
             .main-content {
                 grid-column: 1 / span 2;
                 grid-row: 2;
             }
+            
+            .main-content .photo-square.large {
+                width: 50%;
+                min-height: 400px;
+            }
+            
+            .profile-info {
+                font-size: 16px;
+            }
         }
         
         @media (max-width: 768px) {
+            .page-container {
+                padding: 10px 20px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 20px;
             }
             
             .profile-section, .chat-section, .main-content {
                 grid-column: 1;
+                padding: 10px;
             }
             
             .profile-section {
@@ -240,6 +275,63 @@
             .chat-section {
                 grid-row: 3;
                 height: 60vh;
+            }
+            
+            .profile-section .photo-square {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .main-content .photo-square.large {
+                width: 80%;
+                min-height: 350px;
+                max-height: 500px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .page-container {
+                padding: 5px 10px;
+            }
+            
+            .back-link {
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            
+            .profile-section .photo-square {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .main-content .photo-square.large {
+                width: 100%;
+                min-height: 300px;
+            }
+            
+            .profile-info {
+                font-size: 14px;
+            }
+            
+            .chat-input input {
+                padding: 8px;
+            }
+            
+            .chat-input button {
+                padding: 8px 10px;
+            }
+            
+            .message {
+                padding: 8px 12px;
+                max-width: 95%;
             }
         }
 
@@ -257,19 +349,19 @@
         <div class="three-column-layout">
             <!-- Left Column: Profile -->
             <div class="profile-section">
-                <div class="photo-square" style="background-image: url('../images/crosswords.jpeg');"></div>
+                <div class="photo-square" style="background-image: url('../images/murdermystery.jpeg');"></div>
                 <div class="profile-info">
-                    <h2>aarush</h2>
-                    <p>fixated on crosswords</p>
+                    <h2>nishka</h2>
+                    <p>fixated on murder mysteries</p>
                     <p style="margin-top: 20px; font-style: italic;">
-                        "i was hyper-fixated on crossword puzzles. rebus puzzles happen on thursdays. they don't tell you—it's a vibe check for your brain. one time, i did lines of cocaine and adderall trying to solve a crossword. very intense. also, i tried writing crossword puzzles, but making them symmetric is hard. like, technically, you could represent them as a symmetry of d4, the dihedral group of order four. yeah, i've written crosswords."
+                        "i just really enjoy solving puzzles, and murder mysteries are like games between me and the author. but unlike puzzle hunts, you can't trust authors—they want to trick you! a puzzle is depth-first search, a murder mystery is breadth-first search. that's why i love gone girl—it's not just the mystery; it's also about marriage, misogyny, and more. cool. yeah."
                     </p>
                 </div>
             </div>
 
             <!-- Middle Column: Main Content -->
             <div class="main-content">
-                <div class="photo-square large" style="background-image: url('../images/Aarush.jpg');"></div>
+                <div class="photo-square large" style="background-image: url('../images/Nishka.jpg');"></div>
             </div>
 
             <!-- Right Column: Chat Interface -->
@@ -289,7 +381,7 @@
 
     <script>
         // Current speaker name - this will be different for each page
-        const currentSpeaker = "Aarush";
+        const currentSpeaker = "Nishka";
         
         // DOM elements
         const chatMessages = document.getElementById('chat-messages');
@@ -328,8 +420,12 @@
         function updateInitialMessage() {
             const initialMessage = document.querySelector('.bot-message');
             if (initialMessage) {
-                if (currentSpeaker === "Aarush") {
-                    initialMessage.textContent = "oh, hey! i'm aarush. i used to be, like, really hyper-fixated on crossword puzzles. i would do them literally every single morning, and i would get, like, so mad if i didn't beat my time. especially the rebus puzzles on thursdays—they're so cool! ask me about them!";
+                if (currentSpeaker === "Nishka") {
+                    initialMessage.textContent = "oh, okay, so like, hi! i'm nishka and i got super, super obsessed with murder mystery novels throughout high school. started with sherlock holmes—oh my gosh, a study in scarlet—and then i got into agatha christie. her books are so good, yeah, literally. ask me about my spreadsheet with all her novels or whatever you want to know!";
+                } else if (currentSpeaker === "Brady") {
+                    initialMessage.textContent = "hey! i'm brady. i'm really into zoning laws anddd um... also garages, which is kind of crazy and weird, but basically when i was younger, my dad would kind of rant about zoning law issues. ask me anything about that stuff!";
+                } else if (currentSpeaker === "Tess") {
+                    initialMessage.textContent = "hello! i'm tess. i was really into biographies as a child. i was obsessed with people and learning about people. i read biographies of all the presidents. like i was obsessed with biographies. it was all i would read. ask me about my favorites!";
                 } else {
                     initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
                 }
@@ -342,9 +438,9 @@
             let interests = "";
             let examples = "";
             
-            if (speakerName === "Aarush") {
-                interests = "crossword puzzles, especially new york times crosswords and rebus puzzles";
-                examples = "your experiences with rebus puzzles or your favorite clues";
+            if (speakerName === "Nishka") {
+                interests = "murder mystery novels, especially agatha christie books";
+                examples = "your spreadsheet of agatha christie novels or your thoughts on 'and then there were none'";
             } else {
                 interests = "your unique interests and experiences";
                 examples = "specific stories or details from your life";

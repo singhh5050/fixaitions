@@ -264,23 +264,69 @@ body::before {
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
     }
     
     .container {
-        padding: 60px 40px;  /* Adjusted padding for smaller screens */
+        padding: 15px;
     }
     
     .container::before {
-        top: -20px;
-        left: -20px;
-        right: -20px;
-        bottom: -20px;
+        /* Adjust container border for smaller screens */
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+    
+    /* Adjust content area padding for smaller screens */
+    .content-area {
+        padding: 15px;
+    }
+    
+    /* Reduce header margin on smaller screens */
+    .header {
+        margin-bottom: 20px;
+    }
+    
+    /* Adjust font sizes for better readability on small screens */
+    .header h1 {
+        font-size: 36px;
+    }
+    
+    .header p {
+        font-size: 16px;
     }
 }
 
 @media (max-width: 480px) {
     .grid {
         grid-template-columns: 1fr;
+    }
+    
+    /* Further reduce padding and margins for very small screens */
+    .container {
+        padding: 10px;
+    }
+    
+    .content-area {
+        padding: 10px;
+    }
+    
+    /* Adjust font sizes for very small screens */
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .grid-item h3 {
+        font-size: 16px;
+    }
+    
+    /* Adjust position of mission and transcripts links on small screens */
+    .mission-link, .transcripts-link {
+        position: static;
+        display: block;
+        margin: 10px auto;
+        text-align: center;
+        transform: none;
     }
 } 

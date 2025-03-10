@@ -105,6 +105,46 @@
             .hallucination-image {
                 width: 60%;
             }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .back-link {
+                position: static;
+                margin: 10px 0;
+                display: block;
+            }
+            
+            .header {
+                margin-top: 20px;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .mission-content {
+                font-size: 16px;
+            }
+            
+            .hallucination-image {
+                width: 80%;
+            }
+            
+            .image-caption, .small-image-caption {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -124,7 +164,7 @@
                 <p>When we began this project, we were hit with immediate inspiration for the mode. A website where conversing with an AI-imagined being is made possible--- it was an aspiration we all wanted to bring to life.</p>
                 <p>The ideas for design came easily. Harnessing both our left and right brains, we set out to develop a website that incorporated both science and art.</p>
                 <p>Building upon the technical side, we devised a home page, showcasing a gallery of eight topics for the user to click on, which would then lead to a page where the interviewee could be "chatted" with. The catch was, this was not the interviewee themself, but AI's embodiment of that person. We planned to feed the chatbot our verbatim transcripts, hoping it would internalize them, learn from them, and hypothetically, with a little instruction from our code, become capable of speaking like each person, with all their idiosyncratic tendencies and unique personal knowledge.</p>
-                <p>We built our website and chatbot using programming platforms like Cursor and Github. The technical core of our project leverages a serverless architecture on Vercel that routes API requests to OpenAI's GPT-3.5-turbo model. We implemented a prompt engineering system that processes verbatim interview transcripts to generate unique personality models, complete with speech patterns, verbal tics, and stylistic quirks. Each character's linguistic fingerprint is created by feeding the AI detailed instructions to mimic human speech imperfections -- including disfluencies, elongated words, and conversational patterns -- creating an uncannily authentic simulation of real human conversation that preserves each person's distinct voice while allowing for open-ended interaction.</p>
+                <p>The technical core of our project leverages a serverless architecture on Vercel that routes API requests to OpenAI's GPT-3.5-turbo model. We implemented a prompt engineering system that processes verbatim interview transcripts to generate unique personality models, complete with speech patterns, verbal tics, and stylistic quirks. Each character's linguistic fingerprint is created by feeding the AI detailed instructions to mimic human speech imperfections -- including disfluencies, elongated words, and conversational patterns -- creating an uncannily authentic simulation of real human conversation that preserves each person's distinct voice while allowing for open-ended interaction.</p>
                 <p>We drew intentionally minimalist sketches on Notability to populate the site's interface with a rough, yet authentic style. On each main page, we imagined hand-drawn pictures of the interviewee and the object/icon/thing (undecided at this point in the creative process) the chatbot would be set to have a conversation about.</p>
                 <img src="images/OG web design.jpg" alt="Original web design sketch" class="mission-image">
                 <p class="image-caption">A first mockup of one of our pages.</p>

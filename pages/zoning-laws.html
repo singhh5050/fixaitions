@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zoning Laws | Fixations</title>
+    <title>murder mysteries | fix-ai-tions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../responsive-fixes.css">
     <style>
         .page-container {
             max-width: 1400px;
@@ -15,6 +16,7 @@
             padding: 30px 60px;
             position: relative;
             margin: 0 auto;
+            background-color: #fdfdfd;
         }
 
         body {
@@ -25,6 +27,7 @@
             overflow-y: auto;
             overflow-x: hidden;
             display: block;
+            background-color: #fdfdfd;
         }
 
         .back-link {
@@ -45,117 +48,568 @@
             grid-template-columns: 1fr 1.5fr 1fr;
             gap: 40px;
             margin-top: 40px;
+            align-items: center; /* Vertically center all columns */
         }
 
         .profile-section {
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fdfdfd;
         }
 
-        .profile-photo {
-            width: 100%;
-            aspect-ratio: 1;
-            background-color: #f5f5f5;
-            border: 1px solid #e0e0e0;
+        /* Custom override for profile icon to prevent cropping */
+        .profile-section .photo-square {
+            width: 200px;
+            height: 200px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
             margin-bottom: 20px;
+            /* Remove constraints that might cause cropping */
+            object-fit: contain;
+            box-sizing: content-box;
+            padding: 10px;
+            background-color: #fdfdfd;
         }
 
         .profile-info {
             font-size: 18px;
             line-height: 1.6;
+            width: 100%;
         }
 
         .main-content {
             padding: 20px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fdfdfd;
         }
 
-        .main-photo {
-            width: 100%;
-            height: 500px;
-            background-color: #f5f5f5;
-            border: 1px solid #e0e0e0;
+        /* Custom override for main image */
+        .main-content .photo-square.large {
+            width: 60%; /* Narrower horizontally */
+            height: 80vh; /* Taller vertically */
+            max-height: 800px;
+            min-height: 600px;
+            aspect-ratio: 2/3; /* More vertical aspect ratio */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0 auto;
+            background-color: #fdfdfd;
         }
 
         .chat-section {
             padding: 20px;
-        }
-
-        .chat-boxes {
+            background-color: #fdfdfd;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            height: 90vh; /* Use viewport height */
+            max-height: 90vh; /* Cap the maximum height */
+            min-height: 500px; /* Ensure minimum usable height */
+            width: 100%; /* Take full width of container */
+            box-sizing: border-box;
         }
 
-        .chat-box {
-            padding: 15px;
-            background-color: #f5f5f5;
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
             border: 1px solid #e0e0e0;
             border-radius: 10px;
-            min-height: 80px;
+            overflow: hidden;
         }
 
-        @media (max-width: 1024px) {
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #DCF8C6;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #f1f0f0;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #e0e0e0;
+            background-color: #f5f5f5;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .chat-input input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 10px;
+            min-width: 0; /* Prevent flex item from growing beyond container */
+            font-family: 'Pangolin', cursive;
+        }
+
+        .chat-input button {
+            padding: 10px 15px;
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap; /* Prevent button text from wrapping */
+            font-family: 'Pangolin', cursive;
+        }
+
+        .chat-input button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .loading {
+            align-self: center;
+            margin: 10px 0;
+            font-style: italic;
+            color: #888;
+        }
+
+        /* Make responsive layout for different screen sizes */
+        @media (max-width: 1200px) {
+            .page-container {
+                padding: 20px 40px;
+            }
+            
+            .three-column-layout {
+                grid-template-columns: 1fr 1.5fr 1fr;
+                gap: 20px;
+            }
+            
+            .chat-section {
+                height: 80vh;
+            }
+            
+            .main-content .photo-square.large {
+                width: 70%;
+                min-height: 500px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .page-container {
+                padding: 15px 30px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr 1fr;
+                gap: 15px;
             }
+            
+            .profile-section {
+                grid-column: 1;
+            }
+            
             .chat-section {
-                grid-column: span 2;
+                grid-column: 2;
+                height: 70vh;
+                padding: 15px;
+            }
+            
+            .main-content {
+                grid-column: 1 / span 2;
+                grid-row: 2;
+            }
+            
+            .main-content .photo-square.large {
+                width: 50%;
+                min-height: 400px;
+            }
+            
+            .profile-info {
+                font-size: 16px;
             }
         }
-
+        
         @media (max-width: 768px) {
+            .page-container {
+                padding: 10px 20px;
+            }
+            
             .three-column-layout {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            .chat-section {
-                grid-column: auto;
+            
+            .profile-section, .chat-section, .main-content {
+                grid-column: 1;
+                padding: 10px;
             }
+            
+            .profile-section {
+                grid-row: 1;
+            }
+            
+            .main-content {
+                grid-row: 2;
+            }
+            
+            .chat-section {
+                grid-row: 3;
+                height: 60vh;
+            }
+            
+            .profile-section .photo-square {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .main-content .photo-square.large {
+                width: 80%;
+                min-height: 350px;
+                max-height: 500px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .page-container {
+                padding: 5px 10px;
+            }
+            
+            .back-link {
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            
+            .profile-section .photo-square {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .main-content .photo-square.large {
+                width: 100%;
+                min-height: 300px;
+            }
+            
+            .profile-info {
+                font-size: 14px;
+            }
+            
+            .chat-input input {
+                padding: 8px;
+            }
+            
+            .chat-input button {
+                padding: 8px 10px;
+            }
+            
+            .message {
+                padding: 8px 12px;
+                max-width: 95%;
+            }
+        }
+
+        /* Additional styles to ensure images appear without cropping */
+        .photo-square {
+            background-color: #fdfdfd;
         }
     </style>
 </head>
 <body>
     <div class="content-area">
     <div class="page-container">
-        <a href="../index.html" class="back-link">← Back to Grid</a>
+        <a href="../index.html" class="back-link">← back to grid</a>
         
         <div class="three-column-layout">
             <!-- Left Column: Profile -->
             <div class="profile-section">
-                <div class="profile-photo"></div>
+                <div class="photo-square" style="background-image: url('../images/murdermystery.jpeg');"></div>
                 <div class="profile-info">
-                    <h2>Jordan, 25</h2>
-                    <p>Fixated on Zoning Laws</p>
+                    <h2>nishka</h2>
+                    <p>fixated on murder mysteries</p>
                     <p style="margin-top: 20px; font-style: italic;">
-                        "Did you know that single-<br>
-                        family zoning is actually<br>
-                        a relatively recent<br>
-                        invention? The history of<br>
-                        urban planning is<br>
-                        fascinating. I can talk<br>
-                        about setback requirements<br>
-                        for hours."
+                        "i just really enjoy solving puzzles, and murder mysteries are like games between me and the author. but unlike puzzle hunts, you can't trust authors—they want to trick you! a puzzle is depth-first search, a murder mystery is breadth-first search. that's why i love gone girl—it's not just the mystery; it's also about marriage, misogyny, and more. cool. yeah."
                     </p>
                 </div>
             </div>
 
             <!-- Middle Column: Main Content -->
             <div class="main-content">
-                <div class="main-photo"></div>
+                <div class="photo-square large" style="background-image: url('../images/Nishka.jpg');"></div>
             </div>
 
-            <!-- Right Column: Chat Boxes -->
+            <!-- Right Column: Chat Interface -->
             <div class="chat-section">
-                <div class="chat-boxes">
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
-                    <div class="chat-box"></div>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <!-- Removed initial bot message -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="i wonder..." />
+                        <button id="send-button">send</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Current speaker name - this will be different for each page
+        const currentSpeaker = "Nishka";
+        
+        // DOM elements
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        
+        // Transcripts data
+        let transcripts = {};
+        let currentTranscript = "";
+        
+        // Load transcripts from JSON file
+        async function loadTranscripts() {
+            try {
+                const response = await fetch('../transcripts.json');
+                if (!response.ok) {
+                    throw new Error(`Failed to load transcripts: ${response.status}`);
+                }
+                transcripts = await response.json();
+                
+                // Get the current speaker's transcript
+                if (transcripts[currentSpeaker]) {
+                    currentTranscript = transcripts[currentSpeaker];
+                    console.log(`Loaded transcript for ${currentSpeaker}`);
+                } else {
+                    console.error(`No transcript found for ${currentSpeaker}`);
+                }
+                
+                // Update the initial message
+                updateInitialMessage();
+            } catch (error) {
+                console.error('Error loading transcripts:', error);
+            }
+        }
+        
+        // Update the initial message based on the current speaker
+        function updateInitialMessage() {
+            const initialMessage = document.querySelector('.bot-message');
+            if (initialMessage) {
+                if (currentSpeaker === "Nishka") {
+                    initialMessage.textContent = "oh, okay, so like, hi! i'm nishka and i got super, super obsessed with murder mystery novels throughout high school. started with sherlock holmes—oh my gosh, a study in scarlet—and then i got into agatha christie. her books are so good, yeah, literally. ask me about my spreadsheet with all her novels or whatever you want to know!";
+                } else if (currentSpeaker === "Brady") {
+                    initialMessage.textContent = "hey! i'm brady. i'm really into zoning laws anddd um... also garages, which is kind of crazy and weird, but basically when i was younger, my dad would kind of rant about zoning law issues. ask me anything about that stuff!";
+                } else if (currentSpeaker === "Tess") {
+                    initialMessage.textContent = "hello! i'm tess. i was really into biographies as a child. i was obsessed with people and learning about people. i read biographies of all the presidents. like i was obsessed with biographies. it was all i would read. ask me about my favorites!";
+                } else {
+                    initialMessage.textContent = `hi! i'm ${currentSpeaker.toLowerCase()}. ask me anything about my interests!`;
+                }
+            }
+        }
+        
+        // Create a system prompt based on the speaker
+        function createSystemPrompt(speakerName, transcript) {
+            // Generic interests based on speaker name
+            let interests = "";
+            let examples = "";
+            
+            if (speakerName === "Nishka") {
+                interests = "murder mystery novels, especially agatha christie books";
+                examples = "your spreadsheet of agatha christie novels or your thoughts on 'and then there were none'";
+            } else {
+                interests = "your unique interests and experiences";
+                examples = "specific stories or details from your life";
+            }
+            
+            // Enhanced system prompt template that emphasizes more natural speech patterns
+            return `You are roleplaying as ${speakerName}, who is obsessed with ${interests}.
+
+Here is information about ${speakerName} to help you respond in their voice (this is a transcript of them speaking): 
+
+${transcript}
+
+IMPORTANT: Your responses MUST sound EXACTLY like ${speakerName} from the transcript. This means:
+1. Use MANY filler words like "like," "um," "yeah," "so," etc. exactly as they appear in the transcript
+2. Include speech disfluencies, repetitions, and self-corrections (e.g., "i was like, so i enjoy—i mean, i really enjoy...")
+3. Start sentences with connectors like "so," "and," "but," "okay," etc.
+4. Use the EXACT same sentence structure patterns from the transcript
+5. Include their unique verbal tics (elongated words like "soooo" or "reallyyy")
+6. Occasionally trail off mid-thought with "..." just like in natural speech
+7. Use their exact emphasis patterns, but DO NOT use capital letters for emphasis
+8. Include their exact question patterns ("right?" "you know?")
+
+CRITICAL FORMATTING REQUIREMENT: Use only lowercase letters in your responses. Do not use any capital letters, even for names, places, or the beginning of sentences.
+
+Your responses should be imperfect and sometimes slightly hard to follow - just like real human speech. Prioritize sounding authentic over sounding clear or professional.
+
+Keep responses conversational and occasionally mention ${examples} if relevant to the question.
+
+Additional parameters:
+1. Extrapolate/infer to add more depth to responses - go beyond the transcript to imagine what ${speakerName} might think or feel about related topics based on their interests and personality
+2. While maintaining the disfluent/human speech patterns, avoid being too repetitive - vary your expressions and examples to keep responses interesting to read
+3. RESPONSE LENGTH: Vary your response length based on the question type:
+   - For simple/surface-level questions: Keep responses SHORT (20-50 words)
+   - For medium complexity questions: Use MEDIUM length responses (50-80 words)
+   - For deep/emotional/complex questions: Use LONGER responses (80-120 words)
+   - NEVER exceed 120 words in a response
+
+Important: Do not answer inappropriate questions or engage with harmful content. If asked something inappropriate, politely deflect or change the subject while staying in character.`;
+        }
+
+        // Function to add a message to the chat
+        function addMessage(message, isUser) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+            messageElement.textContent = message;
+            chatMessages.appendChild(messageElement);
+            
+            // Scroll to the bottom of the chat
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to show loading indicator
+        function showLoading() {
+            const loadingElement = document.createElement('div');
+            loadingElement.classList.add('loading');
+            loadingElement.id = 'loading-indicator';
+            loadingElement.textContent = `${currentSpeaker.toLowerCase()} is typing...`;
+            chatMessages.appendChild(loadingElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to hide loading indicator
+        function hideLoading() {
+            const loadingElement = document.getElementById('loading-indicator');
+            if (loadingElement) {
+                loadingElement.remove();
+            }
+        }
+
+        // Function to send a message to the OpenAI API
+        async function sendToOpenAI(userMessage) {
+            try {
+                showLoading();
+                
+                console.log('Sending request to API...');
+                // Use our Vercel API endpoint with dynamic routing instead of calling OpenAI directly
+                const model = 'gpt-3.5-turbo-0125';
+                const apiUrl = `/api/chat/${model}`;
+                
+                // Create the system prompt based on the current speaker
+                const systemPrompt = createSystemPrompt(currentSpeaker, currentTranscript);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo-0125',
+                        messages: [
+                            {
+                                role: 'system',
+                                content: systemPrompt
+                            },
+                            {
+                                role: 'user',
+                                content: userMessage
+                            }
+                        ],
+                        max_tokens: 300
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('API Response not OK:', response.status, errorText);
+                    throw new Error(`API response not OK: ${response.status} ${errorText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                // Add a delay before hiding the loading indicator (5-8 seconds)
+                const minDelay = 1500; // 1.5 seconds
+                const maxDelay = 5000; // 5 seconds
+                const randomDelay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+                
+                setTimeout(() => {
+                    hideLoading();
+                    
+                    if (data.error) {
+                        console.error('API Error:', data.error);
+                        addMessage(`API error: ${data.error.message}`, false);
+                    } else if (data.choices && data.choices.length > 0) {
+                        const botResponse = data.choices[0].message.content;
+                        addMessage(botResponse, false);
+                    } else {
+                        addMessage("Sorry, I couldn't process that. Could you try again?", false);
+                    }
+                }, randomDelay);
+                
+            } catch (error) {
+                // Still maintain a minimum delay for errors too
+                setTimeout(() => {
+                    hideLoading();
+                    console.error('Error:', error);
+                    addMessage(`Sorry, there was an error: ${error.message}. Please check the browser console for more details.`, false);
+                }, 3000);
+            }
+        }
+
+        // Event listener for send button
+        sendButton.addEventListener('click', () => {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                userInput.value = '';
+                sendToOpenAI(message);
+            }
+        });
+
+        // Event listener for Enter key
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const message = userInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    userInput.value = '';
+                    sendToOpenAI(message);
+                }
+            }
+        });
+        
+        // Load transcripts when the page loads
+        document.addEventListener('DOMContentLoaded', loadTranscripts);
+    </script>
 </div>
 </body>
 </html> 
