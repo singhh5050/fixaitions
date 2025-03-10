@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pangolin&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="responsive.css">
     <style>
         body {
             background-color: #fdfdfd;
@@ -47,10 +46,6 @@
             position: absolute;
             left: 20px;
             top: 20px;
-            z-index: 1000;
-            padding: 5px;
-            width: fit-content;
-            pointer-events: auto;
         }
         
         .back-link:hover {
@@ -102,7 +97,6 @@
             color: #666;
         }
         
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .mission-image {
                 max-width: 100%;
@@ -110,49 +104,6 @@
             
             .hallucination-image {
                 width: 60%;
-            }
-            
-            .container {
-                padding: 15px;
-            }
-            
-            .header h1 {
-                font-size: 36px;
-            }
-            
-            .back-link {
-                position: relative;
-                left: 0;
-                top: 0;
-                display: block;
-                margin: 10px 0 30px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .header {
-                margin-bottom: 20px;
-            }
-            
-            .header h1 {
-                font-size: 28px;
-            }
-            
-            .mission-content {
-                font-size: 16px;
-            }
-            
-            .hallucination-image {
-                width: 80%;
-                max-width: 200px;
-            }
-            
-            .image-caption, .small-image-caption {
-                font-size: 14px;
             }
         }
     </style>
@@ -172,8 +123,8 @@
                 <p>Fix-AI-tions was born from an Introductory Seminar ("Intro Sem") called ENGLISH 14N: Stories Everywhere, an interview-based storytelling class. Interviews are inherently human-centered, so our quarter was spent engaging with the most interesting stories people had to share---from first kisses and ways to accidentally kill pet hamsters to the mysterious traveling Arroyo crow figure and a worldwide fashion designer. Throughout the class, we engaged with questions of what it means to be human. So, when it came time for our final project, we continued to be intrigued by defining qualities of humanity. In the age of AI, especially, what sets us apart? How do we live alongside robots without losing parts of ourselves?</p>
                 <p>When we began this project, we were hit with immediate inspiration for the mode. A website where conversing with an AI-imagined being is made possible--- it was an aspiration we all wanted to bring to life.</p>
                 <p>The ideas for design came easily. Harnessing both our left and right brains, we set out to develop a website that incorporated both science and art.</p>
-                <p>Building upon the technical side, we devised a home page, showcasing a gallery of eight topics for the user to click on, which would then lead to a page where the interviewee could be "chatted" with. The catch was, this was not the interviewee themself, but AI's embodiment of that person. We planned to feed an LLM our verbatim transcripts, hoping it would internalize them, learn from them, and hypothetically, with a little instruction from our code, become capable of speaking like each person, with all their idiosyncratic tendencies and unique personal knowledge.</p>
-                <p>The technical core of our project leverages a serverless architecture on Vercel that routes API requests to OpenAI's GPT-3.5-turbo model. We implemented a prompt engineering system that processes verbatim interview transcripts to generate unique personality models, complete with speech patterns, verbal tics, and stylistic quirks. Each character's linguistic fingerprint is created by feeding the AI detailed instructions to mimic human speech imperfections -- including disfluencies, elongated words, and conversational patterns -- creating an uncannily authentic simulation of real human conversation that preserves each person's distinct voice while allowing for open-ended interaction. LLMs for art!</p>
+                <p>Building upon the technical side, we devised a home page, showcasing a gallery of eight topics for the user to click on, which would then lead to a page where the interviewee could be "chatted" with. The catch was, this was not the interviewee themself, but AI's embodiment of that person. We planned to feed the chatbot our verbatim transcripts, hoping it would internalize them, learn from them, and hypothetically, with a little instruction from our code, become capable of speaking like each person, with all their idiosyncratic tendencies and unique personal knowledge.</p>
+                <p>We built our website and chatbot using programming platforms like Cursor and Github. The technical core of our project leverages a serverless architecture on Vercel that routes API requests to OpenAI's GPT-3.5-turbo model. We implemented a prompt engineering system that processes verbatim interview transcripts to generate unique personality models, complete with speech patterns, verbal tics, and stylistic quirks. Each character's linguistic fingerprint is created by feeding the AI detailed instructions to mimic human speech imperfections -- including disfluencies, elongated words, and conversational patterns -- creating an uncannily authentic simulation of real human conversation that preserves each person's distinct voice while allowing for open-ended interaction.</p>
                 <p>We drew intentionally minimalist sketches on Notability to populate the site's interface with a rough, yet authentic style. On each main page, we imagined hand-drawn pictures of the interviewee and the object/icon/thing (undecided at this point in the creative process) the chatbot would be set to have a conversation about.</p>
                 <img src="images/OG web design.jpg" alt="Original web design sketch" class="mission-image">
                 <p class="image-caption">A first mockup of one of our pages.</p>
@@ -199,15 +150,13 @@
                 <p>These questions usually led to fun, nostalgic anecdotes---fantasizing about being a self-sustaining orphan child in the Moor, going over to a friend's house to tell the parents---not the friend---about the current biography being read, and squabbling with siblings and cousins over the colors to dye the wool of SheepLand citizens. This slight change in the way we interviewed not only made each one glow brighter and the stories we captured more true to the interviewee, but it also helped us realize how necessary it is to ask those leading questions.</p>
                 <p>Eventually, we chose the best eight transcripts to build our project upon. "Best," meaning lengthiest, most emotive, most unique, and most engaging. We wanted to feed the AI layered stories with distinct diction, so that it might build the strongest foundation for conversation on our site.</p>
                 <p>We came out of the interview stage with a plethora of sound bites droning on and on about the nichest of topics. A grandfather's old gun cabinet, the English Moor, Minecraft SheepLand, and garages, to name a few. Upon listening to the voice memo recordings of our interviewees and their passions, we stumbled across the occasional snippet that shone bright with star-power. A crossword fanatic sarcastically joking they took lines of cocaine and adderall to maximize their performance, or a biography lover reflecting on childhood concerns of legacy and impermanence. These revealing quotes deserved to be read by the users on our site, and we amended our design to include a short bio alongside each highlighted person, consisting of a verbatim interview segment with (what we dubbed) the most intriguing thing they said. We wanted the project to include some concrete element of the interview, and we figured this was the most effective way. This new and final design showcases the interviewee's exact tone and their passion for their fixation, all the while drawing in the user. Areas for further questioning are posed, and therefore conversation with the AI counterpart is easier to begin.</p>
-                <p>We ultimately reached a point where we had the bare bones of our site laid out, we secured our interviews, and we nailed our purpose down to a tee, but we were still left fighting small functionality and stylistic errors with our website. Upon first inception of one of our interviewee's bios, the AI hallucinated an entirely fictional story, which we found quite ironic!</p>
+                <p>We ultimately reached a point where we had the bare bones of our site laid out, we secured our interviews, and we nailed our purpose down to a tee, but we were still left fighting small functionality and stylistic errors with our website and the AI program (Cursor) we used to create it. Which was exceedingly ironic considering our project was on AI as well. Upon first inception of one of our interviewee's bios, the AI hallucinated an entirely fictional story.</p>
                 <img src="images/adam hallucination.jpg" alt="Example of AI hallucination" class="hallucination-image">
                 <p class="small-image-caption">AI can be finicky.</p>
                 <img src="images/prompt engineering.jpg" alt="Prompt engineering example" class="mission-image">
-                <p class="image-caption">We also prompt-engineered our little hearts out, making iteration after iteration to our code, ensuring the LLM would respond the right way to user questions.</p>
+                <p class="image-caption">We also prompt-engineered our little hearts out, making iteration after iteration to our code, ensuring the AI would respond the right way to user questions.</p>
                 <p>We also wanted to ensure we were giving the user the opportunity to experience the site on their own, and generate their own personal opinions about our project. Again, we wanted to only inspire questions about AI, not assert our own notions. We had to find the perfect balance between instruction and silence--- where to leave things blank, and where to command action.</p>
                 <p>Ultimately, we landed on the most hands off approach possible. This project is not about us handing you our dissertation on the relationship between humanity and artificial intelligence. What this project means... is for you to find out.</p>
-                <p>Sincerely,<p></p>
-                <p>Harsh, Linden, and Sophia</p>
             </div>
         </div>
     </div>
