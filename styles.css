@@ -429,16 +429,16 @@ body::before {
 /* Header and navigation styling */
 .header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     position: relative;
-    padding: 20px 0; /* Add vertical padding to the header */
+    padding: 10px 0;
 }
 
 .header h1 {
     font-size: 48px;
-    margin-bottom: 10px;
-    padding: 20px 0; /* Add vertical padding to create more space */
-    margin-top: 15px; /* Add more top margin */
+    margin-bottom: 8px;
+    padding: 10px 0;
+    margin-top: 8px;
 }
 
 .header p {
@@ -452,7 +452,7 @@ body::before {
     top: 75%;
     transform: translateY(-50%);
     width: 100%;
-    pointer-events: none; /* Allow clicks to pass through container */
+    pointer-events: none;
 }
 
 .transcripts-link {
@@ -464,11 +464,14 @@ body::before {
     color: #666;
     text-decoration: none;
     transition: color 0.2s ease;
-    pointer-events: auto; /* Re-enable clicks on the link */
+    pointer-events: auto;
+    padding: 10px 15px;
+    border-radius: 5px;
 }
 
 .transcripts-link:hover {
     color: #333;
+    background-color: rgba(0,0,0,0.05);
 }
 
 .mission-link {
@@ -480,9 +483,18 @@ body::before {
     color: #666;
     text-decoration: none;
     transition: color 0.2s ease;
-    pointer-events: auto; /* Re-enable clicks on the link */
+    pointer-events: auto;
+    padding: 10px 15px;
+    border-radius: 5px;
 }
 
 .mission-link:hover {
     color: #333;
+    background-color: rgba(0,0,0,0.05);
+}
+
+/* Style for all nav links */
+.nav-links {
+    padding: 10px 15px;
+    transition: all 0.2s ease;
 } 
